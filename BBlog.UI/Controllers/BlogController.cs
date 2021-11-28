@@ -13,7 +13,7 @@ namespace BBlog.UI.Controllers
         BlogManger bm = new BlogManger(new EfBlogRepository());
         public IActionResult Index()
         {
-            var values = bm.GetAll();
+            var values = bm.GetBlogListWithCategory();
             return View(values);
         }
     }
