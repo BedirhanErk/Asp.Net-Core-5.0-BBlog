@@ -29,6 +29,11 @@ namespace DataAccessLayer.Repositories
             }
         }
 
+        public List<Blog> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Blog GetById(int id)
         {
             using (Context c = new Context())

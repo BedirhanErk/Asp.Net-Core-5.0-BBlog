@@ -29,6 +29,11 @@ namespace DataAccessLayer.Repositories
             }
         }
 
+        public List<Category> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Category GetById(int id)
         {
             using (Context c = new Context())
