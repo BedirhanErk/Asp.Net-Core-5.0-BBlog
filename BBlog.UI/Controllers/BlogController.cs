@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,11 @@ namespace BBlog.UI.Controllers
 {
     public class BlogController : Controller
     {
+        BlogManger bm = new BlogManger(new EfBlogRepository());
         public IActionResult Index()
         {
-            return View();
+            var values = bm.GetAll();
+            return View(values);
         }
     }
 }
