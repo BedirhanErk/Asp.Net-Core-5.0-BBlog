@@ -44,12 +44,12 @@
                                 <a href="#">@item.Title </a>
                             </h3>
                             <p>
-                               @item.BlogContent
+                                @item.BlogContent
                             </p>
                             <a href="/Blog/Index" class="btn btn-primary read-m">Go To Blog List</a>
                         </div>
                     }
-                    @await Html.PartialAsync("~/Views/Comment/PartialCommentListByBlog.cshtml")
+                    @await Component.InvokeAsync("CommentListByBlog", ViewBag.id)
                     @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
                 </div>
                 <aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
