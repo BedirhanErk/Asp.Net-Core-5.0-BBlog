@@ -1,0 +1,58 @@
+﻿@model BBlog.UI.Models.WriterViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Register</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                <form action="Index" method="post">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label>Name & Surname</label>
+                            <input type="text" class="form-control" asp-for="Writer.Name" placeholder="" required="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Mail</label>
+                            <input type="email" class="form-control" asp-for="Writer.Mail" placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Password</label>
+                            <input type="password" class="form-control" asp-for="Writer.Password" placeholder="" required="">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="" required="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit mb-4">Register</button>
+                    <p>
+                        <a onclick="doShowTerms();" href="#">By clicking Signup, I agree to your terms</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function doShowTerms() {
+        Swal.fire({
+            title: '<strong>Terms & Conditions</strong>',
+            icon: 'info',
+            html:
+                '<b>Welcome to BBlog!</b>' +
+                '<p>These terms and conditions outline the rules and regulations for the use of BBlog`s Website, located at BBlog.</p> ' +
+                '<p>By accessing this website we assume you accept these terms and conditions. Do not continue to use BBlog if you do not agree to take all of the terms and conditions stated on this page.</p>' +
+                '<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Turkey. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>',
+            confirmButtonText: 'Accept'
+        })
+    }
+</script>
