@@ -1,8 +1,6 @@
 ﻿using EntityLayer.Concrete;
-using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BBlog.UI.Models
 {
@@ -10,5 +8,6 @@ namespace BBlog.UI.Models
     {
         public string ConfirmPassword { get; set; }
         public Writer Writer { get; set; }
+        public IEnumerable<SelectListItem> City { get; set; }
     }
 }

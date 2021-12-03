@@ -32,6 +32,12 @@
                             <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="" required="">
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label>City</label>
+                            @Html.DropDownList("cmbCities", Model.City, "Select City", new { @class = "form-control" })
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary submit mb-4">Register</button>
                     <p>
                         <a onclick="doShowTerms();" href="#">By clicking Signup, I agree to your terms</a>
