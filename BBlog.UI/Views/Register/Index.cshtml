@@ -15,31 +15,31 @@
                 {
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label>Name & Surname</label>
+                            <label>Name & Surname <strong style="color:red">*</strong></label>
                             @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Name, "",new { @class = "text-danger" })
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label>Mail</label>
+                            <label>Email <strong style="color: red">*</strong></label>
                             @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Password</label>
+                            <label>Password <strong style="color: red">*</strong></label>
                             @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Confirm Password</label>
+                            <label>Confirm Password <strong style="color: red">*</strong></label>
                             @Html.Password("ConfirmPassword", "", new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>City</label>
+                            <label>City <strong style="color: red">*</strong></label>
                             @Html.DropDownListFor(x => x.CityName, (List<SelectListItem>)ViewBag.Cities, "Select City", new { @class = "form-control", @required = "" })
                         </div>
                     </div>
