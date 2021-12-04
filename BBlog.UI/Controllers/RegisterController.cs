@@ -1,6 +1,9 @@
 ﻿using BBlog.UI.Models;
 using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -9,25 +12,38 @@ namespace BBlog.UI.Controllers
     public class RegisterController : Controller
     {
         WriterManger wm = new WriterManger(new EfWriterRepository());
-        CityManager cm = new CityManager(new EfCityRepository());
+        WriterViewModel wvm = new WriterViewModel();
 
         [HttpGet]
         public IActionResult Index()
         {
-            WriterViewModel writerViewModel = new WriterViewModel();
-            writerViewModel.City = new SelectList(cm.GetAll(), "CityId", "Name");
-            return View(writerViewModel);
+            ViewBag.Cities = wvm.GetCityList();
+            return View();
         }
         [HttpPost]
-        public IActionResult Index(WriterViewModel writerViewModel)
+        public IActionResult Index(Writer writer, string ConfirmPassword)
         {
-            if (writerViewModel.Writer.Password == writerViewModel.ConfirmPassword)
+            WriterValidator wv = new WriterValidator();
+            ValidationResult result = wv.Validate(writer);
+            if (result.IsValid && (writer.Password == ConfirmPassword))
             {
-                writerViewModel.Writer.Status = true;
-                wm.Add(writerViewModel.Writer);
+                writer.Status = true;
+                wm.Add(writer);
+                return RedirectToAction("Index", "Blog");
             }
-            //TODO: Else için hata mesajı yaz
-            return RedirectToAction("Index", "Blog");
+            else if (writer.Password != ConfirmPassword)
+            {
+                ModelState.AddModelError("Password", "Passwords do not match, please try again");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            ViewBag.Cities = wvm.GetCityList();
+            return View();
         }
     }
 }
