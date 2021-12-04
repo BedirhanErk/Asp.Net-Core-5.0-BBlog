@@ -1,6 +1,5 @@
 ﻿using BBlog.UI.Models;
 using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,13 +9,13 @@ namespace BBlog.UI.Controllers
     public class RegisterController : Controller
     {
         WriterManger wm = new WriterManger(new EfWriterRepository());
+        CityManager cm = new CityManager(new EfCityRepository());
 
         [HttpGet]
         public IActionResult Index()
         {
-            Context c = new Context();
             WriterViewModel writerViewModel = new WriterViewModel();
-            writerViewModel.City = new SelectList(c.Cities, "CityId", "Name");
+            writerViewModel.City = new SelectList(cm.GetAll(), "CityId", "Name");
             return View(writerViewModel);
         }
         [HttpPost]

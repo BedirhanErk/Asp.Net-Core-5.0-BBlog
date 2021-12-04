@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class BlogManger : IBlogService
+    public class BlogManager : IBlogService
     {
         IBlogDal _blogDal;
-        public BlogManger(IBlogDal blogDal)
+        public BlogManager(IBlogDal blogDal)
         {
             _blogDal = blogDal;
         }
