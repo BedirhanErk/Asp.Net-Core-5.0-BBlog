@@ -2,6 +2,7 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BBlog.UI.Controllers
 {
@@ -20,6 +21,9 @@ namespace BBlog.UI.Controllers
         [HttpPost]
         public PartialViewResult PartialAddComment(Comment comment)
         {
+            comment.Status = true;
+            comment.CreDate = DateTime.Now;
+            comment.BlogId = 12;
             cm.Add(comment);
             return PartialView();
         }
