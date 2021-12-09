@@ -20,7 +20,7 @@ namespace BBlog.UI.Controllers
             contact.CreDate = DateTime.Now;
             contact.Status = true;
             cm.Add(contact);
-            return RedirectToAction("Index","Blog");
+            return View();
         }
     }
 }
