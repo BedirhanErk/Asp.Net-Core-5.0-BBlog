@@ -44,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container">
             <div class="row">
                 @await Html.PartialAsync("PartialLeft_Footer")
-                @await Html.PartialAsync("PartialCenter_Footer")
+                @await Component.InvokeAsync("Last3Blog")
                 @await Html.PartialAsync("PartialRight_Footer")
             </div>
             <div class="footer-cpy text-center">

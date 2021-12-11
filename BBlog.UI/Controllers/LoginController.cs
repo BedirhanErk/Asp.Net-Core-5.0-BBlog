@@ -42,14 +42,3 @@ namespace BBlog.UI.Controllers
         }
     }
 }
-//Context c = new Context();
-//var dataValue = c.Writers.FirstOrDefault(x => x.Mail == writer.Mail && x.Password == writer.Password);
-//if (dataValue != null)
-//{
-//    HttpContext.Session.SetString("username", writer.Mail);
-//    return RedirectToAction("Index", "Blog");
-//}
-//else
-//{
-//    return View();
-//}
