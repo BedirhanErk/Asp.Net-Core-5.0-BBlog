@@ -19,7 +19,7 @@ namespace BBlog.UI.Controllers
             return PartialView();
         }
         [HttpPost]
-        public JsonResult PartialAddComment([FromBody]Comment comment)
+        public JsonResult AddComment([FromBody]Comment comment)
         {
             comment.Status = true;
             comment.CreDate = DateTime.Now;
