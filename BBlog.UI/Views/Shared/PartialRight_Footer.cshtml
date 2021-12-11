@@ -1,13 +1,51 @@
-﻿<div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
+﻿<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
     <h2>Signup to our newsletter</h2>
     <div class="subscribe-main text-left">
         <div class="subscribe-form">
-            <form action="#" method="post" class="subscribe_form">
-                <input class="form-control" type="email" placeholder="Enter your email..." required="">
-                <button type="submit" class="btn btn-primary submit">Submit</button>
-            </form>
-            <div class="clearfix"> </div>
+            <input class="form-control" type="email" id="txtEmailF" name="txtEmailF" placeholder="Enter your email...">
+            <button type="submit" class="btn btn-primary submit" onclick="subscribe();">Submit</button>
         </div>
-        <p>We respect your privacy.No spam ever!</p>
     </div>
 </div>
+
+<script>
+    function subscribe() {
+        var data = new Object();
+
+        if (document.getElementById('txtEmailF').value == "") {
+            Swal.fire('Email field cannot be empty')
+            return false;
+        }
+
+        data.Email = document.getElementById('txtEmailF').value;
+
+        $.ajax({
+            type: "POST",
+            url: '/NewsLetter/SubscribeMail',
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'You have signed up for our e-mail newsletter and we will keep you informed',
+                    })
+                    document.getElementById('txtEmailF').value = '';
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while signing up for the mail newsletter',
+                    })
+                    document.getElementById('txtEmailF').value = '';
+                }
+            }
+        });
+    }
+</script>
