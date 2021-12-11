@@ -27,6 +27,8 @@ namespace BBlog.UI
         {
             services.AddControllersWithViews();
 
+            services.AddSession();
+
             //Authorize
             services.AddMvc(config =>
             {
@@ -55,6 +57,8 @@ namespace BBlog.UI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
