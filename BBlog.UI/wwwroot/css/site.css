@@ -18,6 +18,14 @@ a {
   border-color: #1861ac;
 }
 
+.btn-primary.read-m {
+    border-radius: 0;
+    padding: 0.55em 2em;
+    letter-spacing: 1px;
+    background: #01cd74;
+    border: none;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;

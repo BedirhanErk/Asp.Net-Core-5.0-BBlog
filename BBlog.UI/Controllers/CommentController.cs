@@ -19,13 +19,12 @@ namespace BBlog.UI.Controllers
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult PartialAddComment(Comment comment)
+        public JsonResult PartialAddComment([FromBody]Comment comment)
         {
             comment.Status = true;
             comment.CreDate = DateTime.Now;
-            comment.BlogId = 12;
             cm.Add(comment);
-            return PartialView();
+            return Json(comment);
         }
     }
 }

@@ -14,11 +14,11 @@ namespace BBlog.UI.Controllers
             return PartialView();
         }
         [HttpPost]
-        public PartialViewResult SubscribeMail(NewsLetter newsLetter)
+        public JsonResult SubscribeMail([FromBody]NewsLetter data)
         {
-            newsLetter.Status = true;
-            nlm.Add(newsLetter);
-            return PartialView();
+            data.Status = true;
+            nlm.Add(data);
+            return Json(data);
         }
     }
 }
