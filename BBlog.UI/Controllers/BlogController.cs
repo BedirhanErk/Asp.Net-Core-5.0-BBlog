@@ -31,7 +31,7 @@ namespace BBlog.UI.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            var blogs = bm.GetBlogListByWriter(4);
+            var blogs = bm.GetBlogListWithCategoryByWriter(4);
             return View(blogs);
         }
         [HttpGet]

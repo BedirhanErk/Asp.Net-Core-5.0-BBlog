@@ -23,8 +23,18 @@
             <tr>
                 <td><a href="#"><i style="color:red" class="mdi mdi-delete"></i></a></td>
                 <td>@item.Title</td>
-                <td>@item.CategoryId</td>
-                <td>@item.Status</td>
+                <td>@item.Category.Name</td>
+
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="badge badge-success">Active</span>}
+                    else
+                    {
+                        <span class="badge badge-danger">Passive</span>
+                    }
+                </td>
+
                 <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
                 <td><a href="#" class="btn btn-warning">Update</a></td>
             </tr>
