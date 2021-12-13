@@ -9,5 +9,13 @@ namespace BBlog.UI.Controllers
         {
             return View();
         }
+        public PartialViewResult PartialWriterLeftNavbar()
+        {
+            return PartialView();
+        }
+        public PartialViewResult PartialWriterFooter()
+        {
+            return PartialView();
+        }
     }
 }
