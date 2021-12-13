@@ -1,11 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
@@ -16,9 +12,29 @@ namespace BusinessLayer.Concrete
         {
             _writerDal = writerDal;
         }
-        public void Add(Writer writer)
+        public void Add(Writer t)
         {
-            _writerDal.Add(writer);
+            _writerDal.Add(t);
+        }
+
+        public void Delete(Writer t)
+        {
+            _writerDal.Delete(t);
+        }
+
+        public List<Writer> GetAll()
+        {
+            return _writerDal.GetAll();
+        }
+
+        public Writer GetById(int id)
+        {
+            return _writerDal.GetById(id);
+        }
+
+        public void Update(Writer t)
+        {
+            _writerDal.Update(t);
         }
     }
 }
