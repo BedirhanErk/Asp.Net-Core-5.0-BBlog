@@ -1,12 +1,8 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
@@ -17,14 +13,14 @@ namespace BusinessLayer.Concrete
         {
             _blogDal = blogDal;
         }
-        public void Add(Blog blog)
+        public void Add(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDal.Add(t);
         }
 
-        public void Delete(Blog blog)
+        public void Delete(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDal.Delete(t);
         }
 
         public List<Blog> GetAll()
@@ -57,9 +53,9 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetById(id);
         }
 
-        public void Update(Blog blog)
+        public void Update(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDal.Update(t);
         }
     }
 }

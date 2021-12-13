@@ -1,8 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
-using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
 
 namespace BusinessLayer.Concrete
@@ -14,14 +12,14 @@ namespace BusinessLayer.Concrete
         {
             _categoryDal = categoryDal;
         }
-        public void Add(Category category)
+        public void Add(Category t)
         {
-            _categoryDal.Add(category);
+            _categoryDal.Add(t);
         }
 
-        public void Delete(Category category)
+        public void Delete(Category t)
         {
-            _categoryDal.Delete(category);
+            _categoryDal.Delete(t);
         }
 
         public List<Category> GetAll()
@@ -34,9 +32,9 @@ namespace BusinessLayer.Concrete
             return _categoryDal.GetById(id);
         }
 
-        public void Update(Category category)
+        public void Update(Category t)
         {
-            _categoryDal.Update(category);
+            _categoryDal.Update(t);
         }
     }
 }
