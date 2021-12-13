@@ -12,6 +12,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.Image).NotEmpty().WithMessage("You cannot leave the blog image blank");
             RuleFor(x => x.Title).MaximumLength(150).WithMessage("Title can contain up to 150 characters");
             RuleFor(x => x.Title).MinimumLength(3).WithMessage("Title can contain at least 3 characters");
+            RuleFor(x => x.BlogContent).MinimumLength(130).WithMessage("Blog content can contain at least 130 characters");
         }
     }
 }

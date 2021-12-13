@@ -1,6 +1,6 @@
 ﻿@model List<Blog>
 @{
-    ViewData["Title"] = "BlogListByWriter";
+    ViewData["Title"] = "My Blogs";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
@@ -25,10 +25,10 @@
                 <td>@item.Title</td>
                 <td>@item.CategoryId</td>
                 <td>@item.Status</td>
-                <td>@item.CreDate</td>
+                <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
                 <td><a href="#" class="btn btn-warning">Update</a></td>
             </tr>
         }
     </tbody>
 </table>
-<a href="#" class="btn btn-primary">Add</a>
+<a href="/Blog/AddBlog" class="btn btn-primary">Add</a>

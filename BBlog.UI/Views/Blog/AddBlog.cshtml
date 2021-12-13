@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.Blog
+@{
+    ViewData["Title"] = "Add Blog";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Add Blog</h1>
+<br />
+@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+{
+    @Html.Label("Title")
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Thumbnail Image")
+    @Html.TextBoxFor(x => x.ThumbnailImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Image")
+    @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Category")
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.c, new { @class = "form-control" })
+    <br />
+    @Html.Label("Blog Content")
+    @Html.TextAreaFor(x => x.BlogContent, 15, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BlogContent, "", new { @class = "text-danger" })
+    <br />
+    <button type="submit" class="btn btn-info">Add</button>
+}
