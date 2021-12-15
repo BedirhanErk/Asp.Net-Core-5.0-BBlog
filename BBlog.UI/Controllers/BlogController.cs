@@ -69,5 +69,12 @@ namespace BBlog.UI.Controllers
             }
             return View();
         }
+        public IActionResult DeleteBlog(int id)
+        {
+            var blog = bm.GetById(id);
+            blog.Status = false;
+            bm.Update(blog);
+            return RedirectToAction("BlogListByWriter");
+        }
     }
 }

@@ -3,6 +3,8 @@
     ViewData["Title"] = "My Blogs";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
 
 <h1>My Blogs</h1>
 
@@ -20,11 +22,11 @@
     <tbody>
         @foreach (var item in Model)
         {
+
             <tr>
-                <td><a href="#"><i style="color:red" class="mdi mdi-delete"></i></a></td>
+                <td><button href="/Blog/DeleteBlog/@item.BlogId"><i style="color:red" class="mdi mdi-delete"></i></button></td>
                 <td>@item.Title</td>
                 <td>@item.Category.Name</td>
-
                 <td>
                     @if (item.Status == true)
                     {
@@ -34,7 +36,6 @@
                         <span class="badge badge-danger">Passive</span>
                     }
                 </td>
-
                 <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
                 <td><a href="#" class="btn btn-warning">Update</a></td>
             </tr>
