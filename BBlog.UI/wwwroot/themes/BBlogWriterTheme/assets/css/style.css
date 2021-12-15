@@ -12896,7 +12896,7 @@ dl {
         .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
           width: calc(70px - 50px);
           max-width: 100%;
-          height: 28px;
+          height: 23px;
           margin: auto; }
   .navbar .navbar-menu-wrapper {
     transition: width 0.25s ease;
