@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BBlog - @ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/themes/BBlogWriterTheme/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/themes/BBlogWriterTheme/assets/vendors/mdi/css/materialdesignicons.min.css?v1">
     <link rel="stylesheet" href="~/themes/BBlogWriterTheme/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/themes/BBlogWriterTheme/assets/css/style.css?v1">
     <link rel="shortcut icon" href="~/favicon.ico?v1" />    
@@ -61,7 +61,7 @@
                         </a>
                     </li>
                     @await Component.InvokeAsync("WriterMessageNotification")
-                    @await Component.InvokeAsync("WriterNotification")             
+                    @await Component.InvokeAsync("WriterNotification")
                     <li class="nav-item nav-logout d-none d-lg-block">
                         <a class="nav-link" href="#">
                             <i class="mdi mdi-power"></i>
@@ -95,5 +95,7 @@
     <script src="~/themes/BBlogWriterTheme/assets/js/misc.js"></script>
     <script src="~/themes/BBlogWriterTheme/assets/js/dashboard.js?v3"></script>
     <script src="~/themes/BBlogWriterTheme/assets/js/todolist.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
 </body>
 </html>

@@ -3,8 +3,6 @@
     ViewData["Title"] = "My Blogs";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="~/lib/jquery/dist/jquery.js"></script>
 
 <h1>My Blogs</h1>
 
@@ -22,9 +20,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-
             <tr>
-                <td><button href="/Blog/DeleteBlog/@item.BlogId"><i style="color:red" class="mdi mdi-delete"></i></button></td>
+                <td>
+                    @if (item.Status == false)
+                    {
+                        <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:green" class="mdi mdi-backup-restore"></i></a>
+                    }
+                    else
+                    {
+                        <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:red" class="mdi mdi-delete"></i></a>
+                    }
+                </td>
                 <td>@item.Title</td>
                 <td>@item.Category.Name</td>
                 <td>
@@ -43,3 +49,33 @@
     </tbody>
 </table>
 <a href="/Blog/AddBlog" class="btn btn-primary">Add</a>
+
+<script>
+    function deleteBlog(val) {
+        var data = new Object();
+
+        data.id = val;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Blog/DeleteBlog',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            window.location.reload()
+                        }
+                    }
+                });
+            }
+        })    
+    }
+</script>

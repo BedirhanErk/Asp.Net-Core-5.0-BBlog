@@ -16,6 +16,11 @@ namespace BBlog.UI.Controllers
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
 
+        public class ParamBlogId
+        {
+            public int id { get; set; }
+        }
+
         [AllowAnonymous]
         public IActionResult Index()
         {
@@ -69,12 +74,12 @@ namespace BBlog.UI.Controllers
             }
             return View();
         }
-        public IActionResult DeleteBlog(int id)
+        public IActionResult DeleteBlog([FromBody]ParamBlogId request)
         {
-            var blog = bm.GetById(id);
-            blog.Status = false;
+            var blog = bm.GetById(request.id);
+            blog.Status = (blog.Status == false) ? true : false;
             bm.Update(blog);
-            return RedirectToAction("BlogListByWriter");
+            return Json(blog);
         }
     }
 }
