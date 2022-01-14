@@ -15,6 +15,7 @@ namespace BBlog.UI.Controllers
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
 
         public class ParamBlogId
         {
@@ -42,7 +43,6 @@ namespace BBlog.UI.Controllers
         [HttpGet]
         public IActionResult AddBlog()
         {
-            CategoryManager cm = new CategoryManager(new EfCategoryRepository());
             List<SelectListItem> categories = (from x in cm.GetAll()
                                                select new SelectListItem
                                                {
@@ -80,6 +80,30 @@ namespace BBlog.UI.Controllers
             blog.Status = (blog.Status == false) ? true : false;
             bm.Update(blog);
             return Json(blog);
+        }
+        [HttpGet]
+        public IActionResult UpdateBlog(int id)
+        {
+            List<SelectListItem> categories = (from x in cm.GetAll()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.Name,
+                                                   Value = x.CategoryId.ToString()
+                                               }).ToList();
+
+            ViewBag.c = categories;
+            var blog = bm.GetById(id);
+            return View(blog);
+        }
+        [HttpPost]
+        public IActionResult UpdateBlog(Blog blog)
+        {
+            var nowBlog = bm.GetById(blog.BlogId);
+            blog.Status = nowBlog.Status;
+            blog.WriterId = nowBlog.WriterId;
+            blog.CreDate = nowBlog.CreDate;
+            bm.Update(blog);
+            return RedirectToAction("BlogListByWriter");
         }
     }
 }

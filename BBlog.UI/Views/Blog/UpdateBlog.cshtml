@@ -1,13 +1,14 @@
 ﻿@model EntityLayer.Concrete.Blog
 @{
-    ViewData["Title"] = "Add Blog";
+    ViewData["Title"] = "UpdateBlog";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h1>Add Blog</h1>
+<h1>Update Blog</h1>
 <hr />
-@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+@using (Html.BeginForm("UpdateBlog", "Blog", FormMethod.Post))
 {
+    @Html.HiddenFor(x => x.BlogId)
     @Html.Label("Title")
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
@@ -20,11 +21,13 @@
     @Html.ValidationMessageFor(x => x.Image, "", new { @class = "text-danger" })
     <br />
     @Html.Label("Category")
-    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.c, new { @class = "form-control", @style = "color:black" })
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.c, new { @class = "form-control", @style = "color:black"})
     <br />
     @Html.Label("Blog Content")
     @Html.TextAreaFor(x => x.BlogContent, 15, 3, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.BlogContent, "", new { @class = "text-danger" })
     <br />
-    <button type="submit" class="btn btn-info">Add</button>
+    <button class="btn btn-primary" type="submit">Update</button>
 }
+
+
