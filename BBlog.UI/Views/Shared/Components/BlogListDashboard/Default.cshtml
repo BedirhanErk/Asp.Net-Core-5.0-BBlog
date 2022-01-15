@@ -1,0 +1,38 @@
+﻿@model List<Blog>
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Recent Blogs</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> Title </th>
+                                <th> Category </th>
+                                <th> Date </th>
+                                <th> Details </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@item.ThumbnailImage" class="mr-2" alt="image"> @item.Title
+                                    </td>
+                                    <td>
+                                        <label class="badge badge-gradient-success">@item.Category.Name</label>
+                                    </td>
+                                    <td> @item.CreDate.ToString("dd/MMM/yyy") </td>
+                                    <td> <a class="btn btn-primary" href="/Blog/BlogDetails/@item.BlogId"> <i class="mdi  mdi-arrow-right-bold-hexagon-outline"></i></a> </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

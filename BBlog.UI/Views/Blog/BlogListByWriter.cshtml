@@ -36,10 +36,11 @@
                 <td>
                     @if (item.Status == true)
                     {
-                        <span class="badge badge-success">Active</span>}
+                        <label class="badge badge-gradient-success">Active</label>
+                    }
                     else
                     {
-                        <span class="badge badge-danger">Passive</span>
+                        <label class="badge badge-gradient-danger">Passive</label>
                     }
                 </td>
                 <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
