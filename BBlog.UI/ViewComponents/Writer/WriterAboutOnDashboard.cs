@@ -10,8 +10,8 @@ namespace BBlog.UI.ViewComponents.Writer
 
         public IViewComponentResult Invoke()
         {
-            var values = wm.GetWriterById(4);
-            return View(values);
+            var value = wm.GetWriterById(4);
+            return View(value);
         }
     }
 }
