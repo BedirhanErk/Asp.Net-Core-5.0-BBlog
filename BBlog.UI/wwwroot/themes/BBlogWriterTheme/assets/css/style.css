@@ -3491,7 +3491,7 @@ pre {
   width: 100%;
   height: 2.875rem;
   padding: 0.94rem 1.375rem;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1;
   color: #495057;
@@ -3580,7 +3580,7 @@ select.form-control:focus::-ms-value {
   width: 100%;
   padding: 0.94rem 0;
   margin-bottom: 0;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   line-height: 1;
   color: #212529;
   background-color: transparent;
@@ -4823,7 +4823,7 @@ input[type="button"].btn-block {
   align-items: center;
   padding: 0.94rem 1.375rem;
   margin-bottom: 0;
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 1;
   color: #495057;
@@ -12435,7 +12435,7 @@ code {
 .form-control {
   border: 1px solid #ebedf2;
   font-family: "ubuntu-regular", sans-serif;
-  font-size: 0.8125rem; }
+  font-size: 1rem; }
   .form-control:focus {
     background-color: #ffffff;
     color: #000;

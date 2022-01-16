@@ -4,52 +4,66 @@
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h1>My Blogs</h1>
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-database"></i>
+                    </span> My Blogs
+                    <a href="/Blog/AddBlog" class="page-title-icon bg-gradient-primary text-white" style="position:absolute;right:40px"><i class="mdi mdi-plus"></i></a>
+                </h3>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Delete</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Create Date</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.Status == false)
+                            {
+                                <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:green" class="mdi mdi-backup-restore"></i></a>
+                            }
+                            else
+                            {
+                                <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:red" class="mdi mdi-delete"></i></a>
+                            }
+                        </td>
+                        <td>@item.Title</td>
+                        <td>@item.Category.Name</td>
+                        <td>
+                            @if (item.Status == true)
+                            {
+                                <label class="badge badge-gradient-success">Active</label>
+                            }
+                            else
+                            {
+                                <label class="badge badge-gradient-danger">Passive</label>
+                            }
+                        </td>
+                        <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
+                        <td><a href="/Blog/UpdateBlog/@item.BlogId"><i class="mdi mdi-settings"></i></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Delete</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Create Date</th>
-            <th>Update</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @if (item.Status == false)
-                    {
-                        <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:green" class="mdi mdi-backup-restore"></i></a>
-                    }
-                    else
-                    {
-                        <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:red" class="mdi mdi-delete"></i></a>
-                    }
-                </td>
-                <td>@item.Title</td>
-                <td>@item.Category.Name</td>
-                <td>
-                    @if (item.Status == true)
-                    {
-                        <label class="badge badge-gradient-success">Active</label>
-                    }
-                    else
-                    {
-                        <label class="badge badge-gradient-danger">Passive</label>
-                    }
-                </td>
-                <td>@item.CreDate.ToString("dd/MMM/yyyy")</td>
-                <td><a href="/Blog/UpdateBlog/@item.BlogId" class="btn btn-warning">Update</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
-<a href="/Blog/AddBlog" class="btn btn-primary">Add</a>
+
+
 
 <script>
     function deleteBlog(val) {
@@ -77,6 +91,6 @@
                     }
                 });
             }
-        })    
+        })
     }
 </script>
