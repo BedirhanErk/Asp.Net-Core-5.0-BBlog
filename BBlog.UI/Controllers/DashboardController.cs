@@ -9,7 +9,9 @@ namespace BBlog.UI.Controllers
         BlogManager bm = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-
+            ViewBag.mbc = bm.GetMyBlogCount(4);
+            ViewBag.rmb = bm.GetMyBlogsRatings(4);
+            ViewBag.noc = bm.GetNumberOfCommentOnMyBlog(4);
             return View();
         }
     }

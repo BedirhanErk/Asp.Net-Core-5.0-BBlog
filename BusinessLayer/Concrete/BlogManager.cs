@@ -67,5 +67,25 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.GetListWithCategory().TakeLast(10).ToList();
         }
+
+        public long GetBlogCount()
+        {
+            return _blogDal.GetAll().Count();
+        }
+
+        public long GetMyBlogCount(int id)
+        {
+            return _blogDal.GetAll(x => x.WriterId == id).Count();
+        }
+
+        public string GetMyBlogsRatings(int id)
+        {
+            return _blogDal.GetMyBlogsRating(id);
+        }
+
+        public string GetNumberOfCommentOnMyBlog(int id)
+        {
+            return _blogDal.GetNumberOfCommentOnMyBlog(id);
+        }
     }
 }

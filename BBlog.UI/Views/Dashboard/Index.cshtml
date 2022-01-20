@@ -19,9 +19,9 @@
                 <div class="card-body">
                     <img src="~/themes/BBlogWriterTheme/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">
-                        Total Blog <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+                        Ratings of My Blogs <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5">@ViewBag.rmb / 10</h2>
                 </div>
             </div>
         </div>
@@ -30,9 +30,9 @@
                 <div class="card-body">
                     <img src="~/themes/BBlogWriterTheme/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">
-                        My Blog Count <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
+                        Number of Comments on My Blogs <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5">@ViewBag.noc</h2>
                 </div>
             </div>
         </div>
@@ -41,15 +41,14 @@
                 <div class="card-body">
                     <img src="~/themes/BBlogWriterTheme/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">
-                        Number Of Blogs In The Last 7 Days  <i class="mdi mdi-diamond mdi-24px float-right"></i>
+                        My Blog Count <i class="mdi mdi-diamond mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">0</h2>
+                    <h2 class="mb-5">@ViewBag.mbc</h2>
                 </div>
             </div>
         </div>
     </div>
     @await Component.InvokeAsync("BlogListDashboard")
-    @await Component.InvokeAsync("WriterAboutOnDashboard")
     @await Component.InvokeAsync("CategoryListDashboard")
 </body>
 </html>

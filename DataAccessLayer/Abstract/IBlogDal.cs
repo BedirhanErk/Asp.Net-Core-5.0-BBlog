@@ -7,5 +7,8 @@ namespace DataAccessLayer.Abstract
     {
         List<Blog> GetListWithCategory();
         List<Blog> GetListWithCategoryByWriter(int id);
+        List<long> GetMyBlogsId(int id);
+        string GetMyBlogsRating(int id);
+        string GetNumberOfCommentOnMyBlog(int id);
     }
 }

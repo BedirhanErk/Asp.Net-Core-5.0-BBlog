@@ -9,7 +9,7 @@ namespace BBlog.UI.ViewComponents.Blog
         BlogManager bm = new BlogManager(new EfBlogRepository());
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListWithCategoryLastTen();
+            var values = bm.GetBlogListWithCategoryByWriter(4);
             return View(values);
         }
     }

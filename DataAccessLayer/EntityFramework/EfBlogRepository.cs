@@ -25,5 +25,68 @@ namespace DataAccessLayer.EntityFramework
                 return c.Blogs.Include(x => x.Category).Where(x => x.WriterId == id).ToList();
             }
         }
+
+        public List<long> GetMyBlogsId(int id)
+        {
+            using (Context c = new Context())
+            {
+                List<long> blogs = new List<long>();
+                foreach (var item in c.Blogs)
+                {
+                    if (item.WriterId == id)
+                    {
+                        blogs.Add(item.BlogId);
+                    }
+                }
+
+                return blogs;
+            }
+        }
+
+        public string GetMyBlogsRating(int id)
+        {
+            using (Context c = new Context())
+            {
+                List<long> blogs = GetMyBlogsId(id);
+
+                decimal point = new decimal();
+                foreach (var blog in blogs)
+                {
+                    foreach (var rating in c.BlogRatings)
+                    {
+                        if (rating.BlogId == blog)
+                        {
+                            point = point + rating.TotalPoint;
+                        }
+                    }
+                }
+
+                point = point / blogs.Count();
+
+                return point.ToString("N2");
+            }            
+        }
+
+        public string GetNumberOfCommentOnMyBlog(int id)
+        {
+            using (Context c = new Context())
+            {
+                List<long> blogs = GetMyBlogsId(id);
+
+                long number = new long();
+                foreach (var blog in blogs)
+                {
+                    foreach (var rating in c.BlogRatings)
+                    {
+                        if (rating.BlogId == blog)
+                        {
+                            number = number + rating.CommentNumber;
+                        }
+                    }
+                }
+
+                return number.ToString();
+            }
+        }
     }
 }

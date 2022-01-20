@@ -10,5 +10,9 @@ namespace BusinessLayer.Abstract
         List<Blog> GetBlogListWithCategoryLastTen();
         List<Blog> GetBlogListByWriter(int id);
         List<Blog> GetBlogListWithCategoryByWriter(int id);
+        long GetBlogCount();
+        long GetMyBlogCount(int id);
+        string GetMyBlogsRatings(int id);
+        string GetNumberOfCommentOnMyBlog(int id);
     }
 }

@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer.Concrete
 {
@@ -30,6 +31,11 @@ namespace BusinessLayer.Concrete
         public Category GetById(int id)
         {
             return _categoryDal.GetById(id);
+        }
+
+        public long GetCategoryCount()
+        {
+            return _categoryDal.GetAll().Count();
         }
 
         public void Update(Category t)
