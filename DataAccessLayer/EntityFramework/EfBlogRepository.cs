@@ -18,6 +18,14 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
+        public List<Blog> GetListWithCategoryAndRatings(int id)
+        {
+            using (Context c = new Context())
+            {
+                return c.Blogs.Include(x => x.Category).Where(x => x.WriterId == id).Include(x => x.BlogRating).ToList();
+            }
+        }
+
         public List<Blog> GetListWithCategoryByWriter(int id)
         {
             using (Context c = new Context())

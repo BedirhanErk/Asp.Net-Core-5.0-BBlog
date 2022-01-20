@@ -18,6 +18,8 @@ namespace EntityLayer.Concrete
         public Category Category { get; set; }
         public int WriterId { get; set; }
         public Writer Writer { get; set; }
+        public int? BlogRatingId { get; set; }
+        public BlogRating BlogRating { get; set; }
         public List<Comment> Comments { get; set; }
     }
 }

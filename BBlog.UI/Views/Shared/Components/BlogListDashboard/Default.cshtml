@@ -11,6 +11,8 @@
                             <tr>
                                 <th> Title </th>
                                 <th> Category </th>
+                                <th> Rating </th>
+                                <th> Number of Comments </th>
                                 <th> Date </th>
                                 <th> Details </th>
                             </tr>
@@ -25,6 +27,8 @@
                                     <td>
                                         <label class="badge badge-gradient-success">@item.Category.Name</label>
                                     </td>
+                                    <td> @item.BlogRating.TotalPoint / 10 </td>
+                                    <td class="text-center"> @item.BlogRating.CommentNumber </td>
                                     <td> @item.CreDate.ToString("dd/MMM/yyy") </td>
                                     <td> <a href="/Blog/BlogDetails/@item.BlogId"> <i class="mdi  mdi-arrow-right-bold-hexagon-outline"></i></a> </td>
                                 </tr>

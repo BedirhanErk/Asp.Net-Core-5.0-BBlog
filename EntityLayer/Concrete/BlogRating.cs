@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
@@ -14,5 +10,6 @@ namespace EntityLayer.Concrete
         public int BlogId { get; set; }
         public int TotalPoint { get; set; }
         public int CommentNumber { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }
