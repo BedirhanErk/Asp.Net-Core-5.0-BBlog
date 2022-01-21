@@ -25,9 +25,28 @@
                                         <img src="@item.ThumbnailImage" class="mr-2" alt="image"> @item.Title
                                     </td>
                                     <td>
-                                        <label class="badge badge-gradient-success">@item.Category.Name</label>
+                                        @if (item.Category.Name == "Film")
+                                        {
+                                            <label class="badge badge-gradient-success">@item.Category.Name</label>
+                                        }
+                                        else if (item.Category.Name == "Series")
+                                        {
+                                            <label class="badge badge-gradient-info">@item.Category.Name</label>
+                                        }
+                                        else if (item.Category.Name == "Software")
+                                        {
+                                            <label class="badge badge-gradient-warning">@item.Category.Name</label>
+                                        }
+                                        else if (item.Category.Name == "Politics")
+                                        {
+                                            <label class="badge badge-gradient-danger">@item.Category.Name</label>
+                                        }
+                                        else
+                                        {
+                                            <label class="badge badge-gradient-primary">@item.Category.Name</label>
+                                        }
                                     </td>
-                                    <td> @item.BlogRating.TotalPoint / 10 </td>
+                                    <td> @item.BlogRating.TotalPoint.ToString("N2") / 10 </td>
                                     <td class="text-center"> @item.BlogRating.CommentNumber </td>
                                     <td> @item.CreDate.ToString("dd/MMM/yyy") </td>
                                     <td> <a href="/Blog/BlogDetails/@item.BlogId"> <i class="mdi  mdi-arrow-right-bold-hexagon-outline"></i></a> </td>

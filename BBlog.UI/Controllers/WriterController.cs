@@ -7,6 +7,7 @@ namespace BBlog.UI.Controllers
     {
         public IActionResult Index()
         {
+            
             return View();
         }
         public PartialViewResult PartialWriterLeftNavbar()

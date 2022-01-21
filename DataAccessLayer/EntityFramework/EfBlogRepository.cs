@@ -3,6 +3,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,6 +57,7 @@ namespace DataAccessLayer.EntityFramework
             using (Context c = new Context())
             {
                 List<long> blogs = GetMyBlogsId(id);
+                string number = GetNumberOfCommentOnMyBlog(id);
 
                 decimal point = new decimal();
                 foreach (var blog in blogs)
@@ -69,7 +71,7 @@ namespace DataAccessLayer.EntityFramework
                     }
                 }
 
-                point = point / blogs.Count();
+                point = point / Convert.ToInt32(number);
 
                 return point.ToString("N2");
             }            

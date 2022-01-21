@@ -8,7 +8,7 @@ namespace EntityLayer.Concrete
         [Key]
         public int BlogRatingId { get; set; }
         public int BlogId { get; set; }
-        public int TotalPoint { get; set; }
+        public decimal TotalPoint { get; set; }
         public int CommentNumber { get; set; }
         public List<Blog> Blogs { get; set; }
     }
