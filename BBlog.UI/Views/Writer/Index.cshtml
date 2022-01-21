@@ -1,8 +1,60 @@
-﻿
+﻿@model Writer
 @{
     ViewData["Title"] = "Writer";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h1>Index</h1>
+@using (Html.BeginForm("Index", "Writer", FormMethod.Post))
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-account"></i>
+                    </span> My Profile
+                </h3>
+            </div>
+            <form class="forms-sample">
+                @Html.HiddenFor(x => x.WriterId)
+                <div class="form-group">
+                    <label for="exampleInputName1">Name Surname</label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Mail</label>
+                    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", @type = "email" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Password</label>
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control"})
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Password</label>
+                    @Html.Password("ConfirmPassword", "", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    <input type="file" name="img[]" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputCity1">City</label>
+                    @Html.TextBoxFor(x => x.CityName, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">About</label>
+                    @Html.TextAreaFor(x => x.About, 15, 3, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                <button class="btn btn-light">Cancel</button>
+            </form>
+        </div>
+    </div>
 
+}
