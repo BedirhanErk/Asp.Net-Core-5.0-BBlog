@@ -9,7 +9,7 @@ namespace BBlog.UI.ViewComponents.Writer
         NotificationManager nm = new NotificationManager(new EfNotificationRepository());
         public IViewComponentResult Invoke()
         {
-            var values = nm.GetAll();
+            var values = nm.GetLastThreeAndActiveNotification();
             return View(values);
         }
     }

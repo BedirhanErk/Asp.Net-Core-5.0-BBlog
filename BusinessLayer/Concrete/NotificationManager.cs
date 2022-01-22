@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer.Concrete
 {
@@ -30,6 +31,11 @@ namespace BusinessLayer.Concrete
         public Notification GetById(int id)
         {
             return _notificationDal.GetById(id);
+        }
+
+        public List<Notification> GetLastThreeAndActiveNotification()
+        {
+            return _notificationDal.GetAll().Where(x => x.Status == true).TakeLast(3).OrderByDescending(x => x.Date).ToList();
         }
 
         public void Update(Notification t)
