@@ -9,7 +9,8 @@ namespace BBlog.UI.ViewComponents.Writer
         MessageManager mm = new MessageManager(new EfMessageRepository());
         public IViewComponentResult Invoke()
         {
-            return View();
+            var values = mm.GetInboxListByWriter("erkilicbedirhan@gmail.com");
+            return View(values);
         }
     }
 }
