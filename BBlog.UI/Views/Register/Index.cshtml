@@ -40,7 +40,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>City <strong style="color: red">*</strong></label>
-                            @Html.DropDownListFor(x => x.CityName, (List<SelectListItem>)ViewBag.Cities, "Select City", new { @class = "form-control", @required = "" })
+                            @Html.DropDownListFor(x => x.CityId, (List<SelectListItem>)ViewBag.Cities, "Select City", new { @class = "form-control", @required = "" })
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary submit mb-4">Register</button>

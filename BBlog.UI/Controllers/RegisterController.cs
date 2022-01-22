@@ -1,11 +1,13 @@
-﻿using BBlog.UI.Models;
-using BusinessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BBlog.UI.Controllers
 {
@@ -13,12 +15,19 @@ namespace BBlog.UI.Controllers
     public class RegisterController : Controller
     {
         WriterManger wm = new WriterManger(new EfWriterRepository());
-        WriterViewModel wvm = new WriterViewModel();
+        CityManager cm = new CityManager(new EfCityRepository());
 
         [HttpGet]
         public IActionResult Index()
         {
-            ViewBag.Cities = wvm.GetCityList();
+            List<SelectListItem> cities = (from x in cm.GetAll()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CityName,
+                                               Value = x.CityId.ToString()
+                                           }).ToList();
+
+            ViewBag.Cities = cities;
             return View();
         }
         [HttpPost]
@@ -43,7 +52,15 @@ namespace BBlog.UI.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            ViewBag.Cities = wvm.GetCityList();
+            List<SelectListItem> cities = (from x in cm.GetAll()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CityName,
+                                               Value = x.CityId.ToString()
+                                           }).ToList();
+
+            ViewBag.Cities = cities;
+
             return View();
         }
     }

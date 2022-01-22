@@ -4,16 +4,29 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BBlog.UI.Controllers
 {
     public class WriterController : Controller
     {
         WriterManger wm = new WriterManger(new EfWriterRepository());
+        CityManager cm = new CityManager(new EfCityRepository());
         [HttpGet]
         public IActionResult Index()
         {
             var writerValues = wm.GetById(4);
+            List<SelectListItem> cities = (from x in cm.GetAll()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CityName,
+                                               Value = x.CityId.ToString()
+                                           }).ToList();
+
+            cities.Find(x => x.Value == writerValues.CityId.ToString()).Selected = true;
+            ViewBag.Cities = cities;
             return View(writerValues);
         }
         [HttpPost]
@@ -39,6 +52,14 @@ namespace BBlog.UI.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> cities = (from x in cm.GetAll()
+                                           select new SelectListItem
+                                           {
+                                               Text = x.CityName,
+                                               Value = x.CityId.ToString()
+                                           }).ToList();
+
+            ViewBag.Cities = cities;
             return View();
         }
         public PartialViewResult PartialWriterLeftNavbar()
