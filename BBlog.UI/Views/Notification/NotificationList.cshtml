@@ -1,0 +1,39 @@
+﻿@model List<Notification>
+@{
+    ViewData["Title"] = "NotificationList";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-bell-ring"></i>
+                    </span> Notifications
+                </h3>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Detail</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Type</td>
+                        <td>@item.Detail</td>
+                        <td>@item.Date.ToString("dd/MMM/yy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
