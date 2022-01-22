@@ -8,7 +8,8 @@ namespace EntityLayer.Concrete
         [Key]
         public int NotificationId { get; set; }
         public string Type { get; set; }
-        public string TypeSymbol { get; set; }
+        public string Symbol { get; set; }
+        public string Color { get; set; }
         public string Detail { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
