@@ -41,6 +41,11 @@ namespace BusinessLayer.Concrete
             return _messageDal.GetAll(x=>x.Receiver == email);
         }
 
+        public List<Message> GetInboxListByWriterLastThreeAndUnread(string email)
+        {
+            return _messageDal.GetAll(x=>x.Receiver == email).Where(x => x.Status == true).TakeLast(3).ToList();
+        }
+
         public void Update(Message t)
         {
             _messageDal.Update(t);

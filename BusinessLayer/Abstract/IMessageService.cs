@@ -6,5 +6,6 @@ namespace BusinessLayer.Abstract
     public interface IMessageService : IGenericService<Message>
     {
         List<Message> GetInboxListByWriter(string email);
+        List<Message> GetInboxListByWriterLastThreeAndUnread(string email);
     }
 }

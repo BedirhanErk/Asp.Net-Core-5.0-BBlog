@@ -22,24 +22,15 @@
                     <p class="text-gray mb-0">
                         @if (DateTime.Now.Subtract(item.Date).Days > 0)
                         {
-                            @item.Date.Day
-                            @*string diffDay = DateTime.Now.Subtract(item.Date).Days.ToString();
-                            string diff = diffDay + "Days ago";
-                            @Html.Display(diff)*@
+                            @DateTime.Now.Subtract(item.Date).Days <span>  days and </span> @DateTime.Now.Subtract(item.Date).Hours <span> hours ago</span>
                         }
                         else if (DateTime.Now.Subtract(item.Date).Hours > 0)
-                        {   
-                            @item.Date.Hour
-                            @*string diffMinute = DateTime.Now.Subtract(item.Date).Hours.ToString();
-                            string diff = diffMinute + "Hours ago";
-                            @Html.Display(diff)*@
+                        {
+                            @DateTime.Now.Subtract(item.Date).Hours <span> hours and </span> @DateTime.Now.Subtract(item.Date).Minutes <span> minutes ago</span>
                         }
                         else if (DateTime.Now.Subtract(item.Date).Minutes > 0)
                         {
-                            @item.Date.Minute
-                            @*string diffSecond = DateTime.Now.Subtract(item.Date).Seconds.ToString();
-                            string diff = diffSecond + "Seconds ago";
-                            @Html.Display(diff)*@
+                            @DateTime.Now.Subtract(item.Date).Minutes <span> minutes ago</span>
                         }
                     </p>
                 </div>
