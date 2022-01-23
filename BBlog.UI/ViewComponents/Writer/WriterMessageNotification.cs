@@ -10,6 +10,7 @@ namespace BBlog.UI.ViewComponents.Writer
         public IViewComponentResult Invoke()
         {
             var values = mm.GetInboxListByWriterLastThreeAndUnread(4);
+            ViewBag.MessageCount = mm.GetInboxUnReadMessageCount(4);
             return View(values);
         }
     }

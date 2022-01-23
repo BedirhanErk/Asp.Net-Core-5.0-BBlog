@@ -1,0 +1,26 @@
+﻿@model Message2
+@{
+    ViewData["Title"] = "MessageDetail";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-email-open"></i>
+                    </span>Sender : @Model.SenderUser.Name
+                    <a href="/Message/InBox/" class="page-title-icon bg-gradient-info text-white mr-2" style="position:absolute;right:33px"><i class="mdi mdi-keyboard-backspace"></i></a>
+                </h3>
+            </div>
+        </div>
+        <h4>Subject : @Model.Subject</h4>
+        <br />
+        <h5>Message :</h5>
+        <br />
+        <p>@Model.Detail</p>
+    </div>
+</div>
+

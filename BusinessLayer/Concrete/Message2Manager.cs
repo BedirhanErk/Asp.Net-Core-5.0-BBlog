@@ -35,12 +35,22 @@ namespace BusinessLayer.Concrete
 
         public List<Message2> GetInboxListByWriter(int id)
         {
-            return _message2Dal.GetAll(x => x.ReceiverId == id);
+            return _message2Dal.GetInboxListByWriter(id);
         }
 
         public List<Message2> GetInboxListByWriterLastThreeAndUnread(int id)
         {
-            return _message2Dal.GetAll(x => x.ReceiverId == id).Where(x => x.Status == true).TakeLast(3).ToList();
+            return _message2Dal.GetInboxListByWriter(id).Where(x => x.Status == true).TakeLast(3).OrderByDescending(x => x.Date).ToList();
+        }
+
+        public string GetInboxUnReadMessageCount(int id)
+        {
+            return _message2Dal.GetInboxListByWriter(id).Where(x => x.Status == true).Count().ToString();
+        }
+
+        public Message2 GetMessageById(int id)
+        {
+            return _message2Dal.GetMessageById(id);
         }
 
         public void Update(Message2 t)
