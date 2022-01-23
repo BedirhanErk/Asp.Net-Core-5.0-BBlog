@@ -16,5 +16,7 @@ namespace EntityLayer.Concrete
         public int? CityId { get; set; }
         public City City { get; set; }
         public List<Blog> Blogs { get; set; }
+        public virtual ICollection<Message2> WriterSender { get; set; }
+        public virtual ICollection<Message2> WriterReceiver { get; set; }
     }
 }

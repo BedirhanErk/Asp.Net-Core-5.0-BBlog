@@ -1,16 +1,15 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace BBlog.UI.ViewComponents.Writer
 {
     public class WriterMessageNotification : ViewComponent
     {
-        MessageManager mm = new MessageManager(new EfMessageRepository());
+        Message2Manager mm = new Message2Manager(new EfMessage2Repository());
         public IViewComponentResult Invoke()
         {
-            var values = mm.GetInboxListByWriterLastThreeAndUnread("erkilicbedirhan@gmail.com");
+            var values = mm.GetInboxListByWriterLastThreeAndUnread(4);
             return View(values);
         }
     }

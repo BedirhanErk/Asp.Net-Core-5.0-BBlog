@@ -1,4 +1,4 @@
-﻿@model List<Message>
+﻿@model List<Message2>
 
 <li class="nav-item dropdown">
     <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -15,10 +15,10 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                    <img src="~/themes/BBlogWriterTheme/assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                    <img src="@item.SenderId" alt="image" class="profile-pic">
                 </div>
                 <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
-                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">@item.Sender send you a message</h6>
+                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">@item.SenderId send you a message</h6>
                     <p class="text-gray mb-0">
                         @if (DateTime.Now.Subtract(item.Date).Days > 0)
                         {
