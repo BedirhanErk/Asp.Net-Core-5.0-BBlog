@@ -28,12 +28,14 @@ namespace BBlog.UI.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, writer.Mail)
+                    new Claim(ClaimTypes.Email, writer.Mail),
+                    new Claim(ClaimTypes.Name, dataValue.Name),
+                    new Claim(ClaimTypes.NameIdentifier, dataValue.WriterId.ToString())
                 };
                 var userIdentity = new ClaimsIdentity(claims, "a");
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Blog");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {

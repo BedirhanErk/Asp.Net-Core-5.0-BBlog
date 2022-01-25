@@ -5,8 +5,10 @@ using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace BBlog.UI.Controllers
 {
@@ -17,7 +19,8 @@ namespace BBlog.UI.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var writerValues = wm.GetById(4);
+            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
+            var writerValues = wm.GetById(id);
             List<SelectListItem> cities = (from x in cm.GetAll()
                                            select new SelectListItem
                                            {

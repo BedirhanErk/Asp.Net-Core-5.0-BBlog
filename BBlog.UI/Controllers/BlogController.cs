@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace BBlog.UI.Controllers
 { 
@@ -37,7 +38,8 @@ namespace BBlog.UI.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            var blogs = bm.GetBlogListWithCategoryByWriter(4);
+            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
+            var blogs = bm.GetBlogListWithCategoryByWriter(id);
             return View(blogs);
         }
         [HttpGet]
@@ -59,9 +61,10 @@ namespace BBlog.UI.Controllers
             ValidationResult result = bv.Validate(blog);
             if (result.IsValid)
             {
+                int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
                 blog.Status = true;
                 blog.CreDate = DateTime.Now;
-                blog.WriterId = 4;
+                blog.WriterId = id;
                 bm.Add(blog);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
