@@ -57,23 +57,32 @@ namespace DataAccessLayer.EntityFramework
             using (Context c = new Context())
             {
                 List<long> blogs = GetMyBlogsId(id);
-                string number = GetNumberOfCommentOnMyBlog(id);
-
-                decimal point = new decimal();
-                foreach (var blog in blogs)
+                if (blogs.Count > 0)
                 {
-                    foreach (var rating in c.BlogRatings)
+                    string number = GetNumberOfCommentOnMyBlog(id);
+
+                    if (Convert.ToInt32(number) > 0)
                     {
-                        if (rating.BlogId == blog)
+                        decimal point = new decimal();
+                        foreach (var blog in blogs)
                         {
-                            point = point + rating.TotalPoint;
+                            foreach (var rating in c.BlogRatings)
+                            {
+                                if (rating.BlogId == blog)
+                                {
+                                    point = point + rating.TotalPoint;
+                                }
+                            }
+                        }
+
+                        if (point > 0)
+                        {
+                            point = point / Convert.ToInt32(number);
+                            return point.ToString("N2");
                         }
                     }
                 }
-
-                point = point / Convert.ToInt32(number);
-
-                return point.ToString("N2");
+                return "0";
             }            
         }
 
@@ -82,20 +91,25 @@ namespace DataAccessLayer.EntityFramework
             using (Context c = new Context())
             {
                 List<long> blogs = GetMyBlogsId(id);
-
-                long number = new long();
-                foreach (var blog in blogs)
+                if (blogs.Count > 0)
                 {
-                    foreach (var rating in c.BlogRatings)
+                    long number = new long();
+                    foreach (var blog in blogs)
                     {
-                        if (rating.BlogId == blog)
+                        foreach (var rating in c.BlogRatings)
                         {
-                            number = number + rating.CommentNumber;
+                            if (rating.BlogId == blog)
+                            {
+                                number = number + rating.CommentNumber;
+                            }
                         }
                     }
+                    if (number != 0)
+                    {
+                        return number.ToString();
+                    }
                 }
-
-                return number.ToString();
+                return "0";          
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EntityLayer.Concrete
@@ -12,6 +13,9 @@ namespace EntityLayer.Concrete
         public string Image { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
+        public string Facebook { get; set; }
+        public string Twitter { get; set; }
+        public string LinkedIn { get; set; }
         public bool Status { get; set; }
         public int? CityId { get; set; }
         public City City { get; set; }
