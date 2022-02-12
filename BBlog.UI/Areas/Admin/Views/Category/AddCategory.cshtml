@@ -1,0 +1,35 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3>
+                        <i class="fa fa-plus"></i> Add Category
+                        <a href="/Admin/Category/Index" style="position:absolute;right:40px"><i class="fa fa-backward"></i></a>
+                    </h3>
+                </div>
+                <div class="ibox-content">
+                    @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+                    {
+                        @Html.Label("Name*")
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                        <br />
+                        @Html.Label("Description")
+                        @Html.TextAreaFor(x => x.Description, 15, 3, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                        <br />
+                        <button type="submit" class="btn btn-success">Add</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
