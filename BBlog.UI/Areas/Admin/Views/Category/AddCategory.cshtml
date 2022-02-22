@@ -10,17 +10,17 @@
                 <div class="ibox-title">
                     <h3>
                         <i class="fa fa-plus"></i> Add Category
-                        <a href="/Admin/Category/Index" style="position:absolute;right:40px"><i class="fa fa-backward"></i></a>
+                        <a href="/Admin/Category/Index" style="position:absolute;right:40px"><i class="fa fa-arrow-left"></i></a>
                     </h3>
                 </div>
                 <div class="ibox-content">
                     @using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
                     {
-                        @Html.Label("Name*")
+                        <label><b>Name</b><b style="color:red">*</b></label>
                         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                         <br />
-                        @Html.Label("Description")
+                        <label><b>Description</b></label>
                         @Html.TextAreaFor(x => x.Description, 15, 3, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
                         <br />
