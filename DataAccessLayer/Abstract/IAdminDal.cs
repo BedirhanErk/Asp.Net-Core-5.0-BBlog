@@ -2,8 +2,7 @@
 
 namespace DataAccessLayer.Abstract
 {
-    public interface ICategoryDal : IGenericDal<Category>
+    public interface IAdminDal : IGenericDal<Admin>
     {
-
     }
 }
