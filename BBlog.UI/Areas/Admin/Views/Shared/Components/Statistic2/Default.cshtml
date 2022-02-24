@@ -1,0 +1,22 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget navy-bg no-padding">               
+                <div class="p-m">
+                    <h4>Last Blog</h4>
+                    <h2 class="font-bold no-margins">
+                        @item.Title
+                    </h2>
+                    <h3>@item.BlogContent</h3>
+                    <div align="right" style="margin-right:30px">
+                        <a style="color:white" href="/Blog/BlogDetails/@item.BlogId"><i class="fa fa-arrow-right fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

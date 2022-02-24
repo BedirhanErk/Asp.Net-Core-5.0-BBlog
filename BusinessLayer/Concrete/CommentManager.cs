@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BusinessLayer.Concrete
 {
@@ -22,6 +23,11 @@ namespace BusinessLayer.Concrete
         public List<Comment> GetAll(int id)
         {
             return _commentDal.GetAll(x=>x.BlogId == id);
+        }
+
+        public long GetCommentCount()
+        {
+            return _commentDal.GetAll().Count();
         }
     }
 }
