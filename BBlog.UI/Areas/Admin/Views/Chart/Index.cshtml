@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="divChart" style="height:500px">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(DrawonLoad);
+
+    function DrawonLoad() {
+        $(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Chart/CategoryChart',
+                success: function (chartsdata) {
+                    var Data = chartsdata.jsonlist;
+                    var data = new google.visualization.DataTable();
+
+                    data.addColumn('string', 'categoryname');
+                    data.addColumn('number', 'categorycount');
+
+                    for (var i = 0; i < Data.length; i++) {
+                        data.addRow([Data[i].categoryname, Data[i].categorycount])
+                    }
+
+                    var chart = new google.visualization.PieChart(document.getElementById('divChart'));
+
+                    chart.draw(data, {
+                        title: "Category - Blog Chart",
+                        position: "top",
+                        fontsize: "16px"
+                    });
+                }
+            });
+        });
+    }
+</script>
