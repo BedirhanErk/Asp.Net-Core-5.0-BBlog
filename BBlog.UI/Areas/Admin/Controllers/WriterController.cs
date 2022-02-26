@@ -1,41 +1,63 @@
-﻿using BBlog.UI.Areas.Admin.Models;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace BBlog.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class WriterController : Controller
     {
+        WriterManger wm = new WriterManger(new EfWriterRepository());
+        public class ParamId
+        {
+            public int id { get; set; }
+        }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult SaveWriter([FromBody]Writer writer)
+        {
+            if (writer.WriterId > 0)
+            {
+                var value = wm.GetById(writer.WriterId);
+                writer.Status = value.Status;
+                wm.Update(writer);
+            }
+            else
+            {
+                writer.Status = true;
+                wm.Add(writer);
+            }
+
+            var result = JsonConvert.SerializeObject(writer);
+            return Json(result);
+        }
 
         public IActionResult GetWriterList()
         {
-            var jsonWriter = JsonConvert.SerializeObject(writers);
-            return Json(jsonWriter);
+            var writers = wm.GetAll();
+            var result = JsonConvert.SerializeObject(writers);
+            return Json(result);
         }
 
-        public static List<WriterClass> writers = new List<WriterClass>
+        public IActionResult GetWriterById(int id)
         {
-            new WriterClass
-            {
-                Id = 1,
-                Name = "Ayşe"
-            },
-            new WriterClass
-            {
-                Id = 2,
-                Name = "Ahmet"
-            },
-            new WriterClass
-            {
-                Id = 3,
-                Name = "Buse"
-            }
-        };
+            var writer = wm.GetById(id);
+            var result = JsonConvert.SerializeObject(writer);
+            return Json(result);
+        }
+        [HttpPost]
+        public IActionResult DeleteWriter([FromBody] ParamId request)
+        {
+            var writer = wm.GetById(request.id);
+            writer.Status = (writer.Status == false) ? true : false;
+            wm.Update(writer);
+            return Json(writer);
+        }
     }
 }
