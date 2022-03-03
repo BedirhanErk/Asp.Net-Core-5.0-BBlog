@@ -44,5 +44,45 @@ namespace BBlog.UI.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public async Task<IActionResult> UpdateEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:44305/api/Employee/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonEmployee = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<Class1>(jsonEmployee);
+                return View(value);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmployee(Class1 class1)
+        {
+            if (class1.Name != "" && class1.Name != null)
+            {
+                var httpClient = new HttpClient();
+                var jsonEmployee = JsonConvert.SerializeObject(class1);
+                var content = new StringContent(jsonEmployee, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PutAsync("https://localhost:44305/api/Employee", content);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(class1);
+            }
+            return View();
+        }
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            HttpClient httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync("https://localhost:44305/api/Employee/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
