@@ -1,0 +1,28 @@
+﻿@model BBlog.UI.Controllers.Class1
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3>
+                        <i class="fa fa-plus"></i> Add Employee
+                        <a href="/EmployeeTest/Index" style="position:absolute;right:40px"><i class="fa fa-arrow-left"></i></a>
+                    </h3>
+                </div>
+                <div class="ibox-content">
+                    @using (Html.BeginForm("AddEmployee", "EmployeeTest", FormMethod.Post))
+                    {
+                        <label><b>Name</b><b style="color:red">*</b></label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        <br />
+                        <button type="submit" class="btn btn-success">Add</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
