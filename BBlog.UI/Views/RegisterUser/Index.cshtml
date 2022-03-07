@@ -18,38 +18,52 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-                <h1>BB</h1>
+                <h2 style="font-size:100px">BB</h2>
             </div>
             <h3>Register to BBlog</h3>
-            <form class="m-t" role="form" action="login.html">
+            <form class="m-t" role="form" asp-action="Index">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" required="">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <input type="text" class="form-control" asp-for="UserName" placeholder="User Name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Surname" required="">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required="">
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                    <input type="text" class="form-control" asp-for="Surname" placeholder="Surname">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input type="email" class="form-control" asp-for="Email" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Confirm Password" required="">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="Confirm Password">
+                </div>
+                <div class="form-group">
+                    <div class="checkbox i-checks">
+                        <label onclick="doShowTerms();">
+                        <input type="checkbox" id="inpAgree" required> 
+                            Agree the terms and policy 
+                        </label>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
-
-                <p class="text-muted text-center"><small>Already have an account?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                <a class="btn btn-sm btn-white btn-block" href="/RegisterUser/Login">Login</a>
             </form>
-            <p class="m-t"> <small>BBlog  &copy; 2019</small> </p>
+            <p class="m-t"> <small>BBlog  &copy; 2021 | Developed by <a href="https://www.bedirhanerkilic.com/" target="_blank">Bedirhan Erkılıç</a> </small></p>
         </div>
     </div>
 
     <script src="~/themes/BBlogAdminTheme/js/jquery-3.1.1.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/themes/BBlogAdminTheme/js/popper.min.js"></script>
     <script src="~/themes/BBlogAdminTheme/js/bootstrap.js"></script>
     <script src="~/themes/BBlogAdminTheme/js/plugins/iCheck/icheck.min.js"></script>
@@ -60,6 +74,19 @@
                 radioClass: 'iradio_square-green',
             });
         });
+
+        function doShowTerms() {
+            Swal.fire({
+                title: '<strong>Terms & Conditions</strong>',
+                icon: 'info',
+                html:
+                    '<b>Welcome to BBlog!</b>' +
+                    '<p>These terms and conditions outline the rules and regulations for the use of BBlog`s Website, located at BBlog.</p> ' +
+                    '<p>By accessing this website we assume you accept these terms and conditions. Do not continue to use BBlog if you do not agree to take all of the terms and conditions stated on this page.</p>' +
+                    '<p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Turkey. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>',
+                confirmButtonText: 'Accept'
+            })
+        }
     </script>
 </body>
 </html>
