@@ -1,18 +1,24 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BBlog.UI.ViewComponents.Blog
 {
     public class BlogListDashboard : ViewComponent
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
-        public IViewComponentResult Invoke()
+        private readonly UserManager<AppUser> _userManager;
+        public BlogListDashboard(UserManager<AppUser> userManager)
         {
-            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
-            var values = bm.GetListWithCategoryAndRatings(id);
+            _userManager = userManager;
+        }
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var values = bm.GetListWithCategoryAndRatings(user.Id);
             foreach (var value in values)
             {
                 if (value.BlogRating.TotalPoint != 0)

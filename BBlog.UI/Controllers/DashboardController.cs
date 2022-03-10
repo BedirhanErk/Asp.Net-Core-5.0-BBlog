@@ -1,20 +1,26 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BBlog.UI.Controllers
 {
     public class DashboardController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
-        public IActionResult Index()
+        private readonly UserManager<AppUser> _userManager;
+        public DashboardController(UserManager<AppUser> userManager)
         {
-            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
-            ViewBag.mbc = bm.GetMyBlogCount(id);
-            ViewBag.rmb = bm.GetMyBlogsRatings(id);
-            ViewBag.noc = bm.GetNumberOfCommentOnMyBlog(id);
+            _userManager = userManager;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            ViewBag.mbc = bm.GetMyBlogCount(user.Id);
+            ViewBag.rmb = bm.GetMyBlogsRatings(user.Id);
+            ViewBag.noc = bm.GetNumberOfCommentOnMyBlog(user.Id);
             return View();
         }
     }
