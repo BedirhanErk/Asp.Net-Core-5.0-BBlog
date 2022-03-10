@@ -1,31 +1,40 @@
-﻿
+﻿@model LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    Layout = null;
 }
-
-<section class="main-content-w3layouts-agileits">
-    <div class="container">
-        <h3 class="tittle">Sign In</h3>
-        <div class="row inner-sec">
-            <div class="login p-5 bg-light mx-auto mw-100">
-                <form method="post">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1 mb-2">Email</label>
-                        <input type="email" class="form-control" id="Mail" name="Mail" aria-describedby="emailHelp" placeholder="" required="">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1 mb-2">Password</label>
-                        <input type="password" class="form-control" id="Password" name="Password" placeholder="" required="">
-                    </div>
-                    @*<div class="form-check mb-2">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>*@
-                    <button type="submit" class="btn btn-primary submit mb-4">Login</button>
-                    <p><a href="/Register/Index"> Don't have an account?</a></p>
-                </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBlog | Login</title>
+    <link href="~/themes/BBlogAdminTheme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/themes/BBlogAdminTheme/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/themes/BBlogAdminTheme/css/animate.css" rel="stylesheet">
+    <link href="~/themes/BBlogAdminTheme/css/style.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <h2 style="font-size:100px">BB</h2>
             </div>
+            <h3>Login to BBlog</h3>
+            <form class="m-t" role="form" asp-action="Index">
+                <div class="form-group">
+                    <input type="text" class="form-control" asp-for="UserName" placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <a class="btn btn-sm btn-white btn-block" href="/RegisterUser/Index">Create an account</a>
+            </form>
+            <p class="m-t"> <small>BBlog  &copy; 2021 | Developed by <a href="https://www.bedirhanerkilic.com/" target="_blank">Bedirhan Erkılıç</a> </small></p>
         </div>
     </div>
-</section>
+    <script src="~/themes/BBlogAdminTheme/js/jquery-3.1.1.min.js"></script>
+    <script src="~/themes/BBlogAdminTheme/js/popper.min.js"></script>
+    <script src="~/themes/BBlogAdminTheme/js/bootstrap.js"></script>
+</body>
+</html>
