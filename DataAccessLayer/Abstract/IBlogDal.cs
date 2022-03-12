@@ -11,5 +11,6 @@ namespace DataAccessLayer.Abstract
         List<long> GetMyBlogsId(int id);
         string GetMyBlogsRating(int id);
         string GetNumberOfCommentOnMyBlog(int id);
+        long GetBlogCommentCount(int id);
     }
 }

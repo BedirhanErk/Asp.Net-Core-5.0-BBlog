@@ -11,6 +11,14 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfBlogRepository : GenericRepository<Blog>, IBlogDal
     {
+        public long GetBlogCommentCount(int id)
+        {
+            using (Context c = new Context())
+            {
+                return c.Comments.Count(x => x.BlogId == id);
+            }
+        }
+
         public List<Blog> GetListWithCategory()
         {
             using (Context c = new Context())

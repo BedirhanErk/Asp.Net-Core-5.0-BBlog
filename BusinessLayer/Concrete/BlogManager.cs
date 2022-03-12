@@ -92,5 +92,10 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.GetListWithCategoryAndRatings(id);
         }
+
+        public long GetBlogCommentCount(int id)
+        {
+            return _blogDal.GetBlogCommentCount(id);
+        }
     }
 }

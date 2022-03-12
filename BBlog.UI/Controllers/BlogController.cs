@@ -24,16 +24,25 @@ namespace BBlog.UI.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Index()
         {
             var values = bm.GetBlogListWithCategory();
             return View(values);
         }
         [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Index(string blog)
+        {
+            var values = bm.GetBlogListWithCategory().Where(x=>x.Title.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.BlogContent.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.Category.Name.ToLower().Trim().Contains(blog.ToLower().Trim())).ToList();
+            return View(values);
+        }
+        [AllowAnonymous]
         public IActionResult BlogDetails(int id)
         {
             ViewBag.id = id;
-            var values = bm.GetAll(id);
+            ViewBag.comment = bm.GetBlogCommentCount(id);
+            var values = bm.GetById(id);
             return View(values);
         }
         public IActionResult BlogListByWriter()

@@ -15,5 +15,6 @@ namespace BusinessLayer.Abstract
         long GetMyBlogCount(int id);
         string GetMyBlogsRatings(int id);
         string GetNumberOfCommentOnMyBlog(int id);
+        long GetBlogCommentCount(int id);
     }
 }
