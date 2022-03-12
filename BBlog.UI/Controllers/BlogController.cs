@@ -34,7 +34,10 @@ namespace BBlog.UI.Controllers
         [HttpPost]
         public IActionResult Index(string blog)
         {
-            var values = bm.GetBlogListWithCategory().Where(x=>x.Title.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.BlogContent.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.Category.Name.ToLower().Trim().Contains(blog.ToLower().Trim())).ToList();
+            List<Blog> values = new List<Blog>();
+  
+            values = bm.GetBlogListWithCategory().Where(x => x.Title.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.BlogContent.ToLower().Trim().Contains(blog.ToLower().Trim()) || x.Category.Name.ToLower().Trim().Contains(blog.ToLower().Trim())).ToList();
+
             return View(values);
         }
         [AllowAnonymous]

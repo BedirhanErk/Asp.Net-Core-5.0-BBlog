@@ -7,12 +7,12 @@
 <div class="tech-btm">
     <h4>Sign up to our newsletter</h4>
     <p>Get news of our blogs by email </p>
-    <input type="email" placeholder="Email" id="txtEmail" name="txtEmail">
-    <button class="btn btn-primary read-m" type="button" style="width:350px" onclick="subscribe();">Subscribe</button>
+    <input class="form-control" type="email" placeholder="Enter your email..." id="txtEmail" name="txtEmail">
+    <button class="btn btn-primary read-m" type="submit" style="width:350px" onclick="subscribeMail();">Subscribe</button>
 </div>
 
 <script>
-    function subscribe() {
+    function subscribeMail() {
         var data = new Object();
 
         if (document.getElementById('txtEmail').value == "") {
@@ -35,7 +35,7 @@
                         title: 'Success',
                         text: 'You have signed up for our e-mail newsletter and we will keep you informed',
                     })
-                    document.getElementById('txtEmail').value = '';
+                    document.getElementById('txtEmail').value = "";
                 }
                 else {
                     Swal.fire({
@@ -43,7 +43,7 @@
                         title: 'Error',
                         text: 'An error occurred while signing up for the mail newsletter',
                     })
-                    document.getElementById('txtEmail').value = '';
+                    document.getElementById('txtEmail').value = "";
                 }
             }
         });
