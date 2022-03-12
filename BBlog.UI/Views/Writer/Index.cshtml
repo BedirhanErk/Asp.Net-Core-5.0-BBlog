@@ -1,4 +1,4 @@
-﻿@model Writer
+﻿@model AppUser
 @{
     ViewData["Title"] = "Writer";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -16,74 +16,45 @@
                 </h3>
             </div>
             <form class="forms-sample">
-                @Html.HiddenFor(x => x.WriterId)
+                @Html.HiddenFor(x => x.Id)
                 <div class="form-group">
-                    <label for="exampleInputName1">Name Surname: </label>
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    <label>User Name: </label>
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control"})
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail3">Mail:  </label>
-                    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", @type = "email" })
+                    <label for="exampleInputName1">Name: </label>
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control"})
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword4">Password: </label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    <label>Surname:  </label>
+                    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control"})
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword4">Confirm Password: </label>
-                    @Html.Password("ConfirmPassword", "", new { @class = "form-control" })
+                    <label for="exampleInputEmail3">Email:  </label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @type = "email" })
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputCity1">City: </label>
-                    @Html.DropDownListFor(x => x.CityId, (List<SelectListItem>)ViewBag.Cities, "Select City", new { @class = "form-control", @required = "", @style = "color:black" })
+                    <label>Phone:  </label>
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control"})
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputCity1">Facebook: </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" asp-for="Facebook" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-facebook" disabled>
-                                <i class="mdi mdi-facebook"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputCity1">Twitter: </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" asp-for="Twitter" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-twitter" disabled>
-                                <i class="mdi mdi-twitter"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputCity1">LinkedIn: </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" asp-for="LinkedIn" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-sm btn-linkedin" disabled>
-                                <i class="mdi mdi-linkedin"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Upload Image: </label>
-                    <input type="file" name="img[]" class="file-upload-default">
-                    <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                        </span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea1">About: </label>
-                    @Html.TextAreaFor(x => x.About, 15, 3, new { @class = "form-control" })
-                </div>
+                @*<div class="form-group">
+            <label for="exampleInputPassword4">Password: </label>
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        </div>*@
+                @*<div class="form-group">
+            <label for="exampleInputPassword4">Confirm Password: </label>
+            @Html.Password("ConfirmPassword", "", new { @class = "form-control" })
+        </div>*@
+                @*<div class="form-group">
+            <label>Upload Image: </label>
+            <input type="file" name="img[]" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                </span>
+            </div>
+        </div>*@
                 <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                 <button class="btn btn-light">Cancel</button>
             </form>

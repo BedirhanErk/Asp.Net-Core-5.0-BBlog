@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -17,7 +18,11 @@ namespace BBlog.UI.Controllers
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-
+        private readonly UserManager<AppUser> _userManager;
+        public BlogController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
         public class ParamBlogId
         {
             public int id { get; set; }
@@ -50,8 +55,8 @@ namespace BBlog.UI.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
-            var blogs = bm.GetBlogListWithCategoryByWriter(id);
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            var blogs = bm.GetBlogListWithCategoryByWriter(user.Id);
             return View(blogs);
         }
         [HttpGet]
