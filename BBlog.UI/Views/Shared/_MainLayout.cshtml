@@ -32,26 +32,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <header>
         <div class="top-bar_sub_w3layouts container-fluid">
             <div class="row">
-                @await Html.PartialAsync("PartialTitle_Header")
-                @await Html.PartialAsync("PartialWelcome_Header")
-                @await Html.PartialAsync("PartialSocialIcons_Header")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialTitle_Header.cshtml")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialWelcome_Header.cshtml")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialSocialIcons_Header.cshtml")
             </div>
         </div>
         <div class="header_top" id="home">
-            @await Html.PartialAsync("PartialHeader_Header")
+            @await Html.PartialAsync("~/Views/MainLayout/PartialHeader_Header.cshtml")
         </div>
     </header>
     @RenderBody()
     <footer>
         <div class="container">
             <div class="row">
-                @await Html.PartialAsync("PartialLeft_Footer")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialLeft_Footer.cshtml")
                 @await Component.InvokeAsync("Last3Blog")
-                @await Html.PartialAsync("PartialRight_Footer")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialRight_Footer.cshtml")
             </div>
             <div class="footer-cpy text-center">
-                @await Html.PartialAsync("PartialSocialIcons_Footer")
-                @await Html.PartialAsync("PartialCopyRight_Footer")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialSocialIcons_Footer.cshtml")
+                @await Html.PartialAsync("~/Views/MainLayout/PartialCopyRight_Footer.cshtml")
             </div>
         </div>
     </footer>
