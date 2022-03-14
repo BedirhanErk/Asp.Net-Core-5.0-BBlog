@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using BBlog.UI.Models;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -17,13 +18,41 @@ namespace BBlog.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            return View(user);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.UserName = user.UserName;
+            model.Name = user.Name;
+            model.Surname = user.Surname;
+            model.Email = user.Email;
+            model.PhoneNumber = user.PhoneNumber;
+            model.Image = user.Image;
+            return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Index(AppUser user)
+        public async Task<IActionResult> Index(UserUpdateViewModel request)
         {
-            await _userManager.UpdateAsync(user);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {               
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user.UserName = request.UserName;
+                user.Name = request.Name;
+                user.Surname = request.Surname;
+                user.Email = request.Email;
+                user.PhoneNumber = request.PhoneNumber;
+                user.Image = request.Image;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+                }
+            }
+            return View();
         }
         public PartialViewResult PartialWriterLeftNavbar()
         {

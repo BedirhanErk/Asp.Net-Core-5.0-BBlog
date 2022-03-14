@@ -10,12 +10,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BBlog.UI.Controllers
-{ 
+{
     public class BlogController : Controller
     {
+        BusinessLayer.Concrete.UserManager um = new BusinessLayer.Concrete.UserManager(new EfUserRepository());
         BlogManager bm = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         private readonly UserManager<AppUser> _userManager;
@@ -32,7 +33,7 @@ namespace BBlog.UI.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = bm.GetBlogListWithCategory().Where(x => x.Status == true).ToList();
             return View(values);
         }
         [AllowAnonymous]
@@ -51,11 +52,13 @@ namespace BBlog.UI.Controllers
             ViewBag.id = id;
             ViewBag.comment = bm.GetBlogCommentCount(id);
             var values = bm.GetById(id);
+            var writer = um.GetById(values.WriterId);
+            ViewBag.author = writer.Name + " " + writer.Surname;
             return View(values);
         }
-        public IActionResult BlogListByWriter()
+        public async Task<IActionResult> BlogListByWriter()
         {
-            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var blogs = bm.GetBlogListWithCategoryByWriter(user.Id);
             return View(blogs);
         }
@@ -72,16 +75,16 @@ namespace BBlog.UI.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddBlog(Blog blog)
+        public async Task<IActionResult> AddBlog(Blog blog)
         {
             BlogValidator bv = new BlogValidator();
             ValidationResult result = bv.Validate(blog);
             if (result.IsValid)
             {
-                int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 blog.Status = true;
                 blog.CreDate = DateTime.Now;
-                blog.WriterId = id;
+                blog.WriterId = user.Id;
                 bm.Add(blog);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -121,6 +124,7 @@ namespace BBlog.UI.Controllers
             var nowBlog = bm.GetById(blog.BlogId);
             blog.Status = nowBlog.Status;
             blog.WriterId = nowBlog.WriterId;
+            blog.BlogRatingId = nowBlog.BlogRatingId;
             blog.CreDate = nowBlog.CreDate;
             bm.Update(blog);
             return RedirectToAction("BlogListByWriter");

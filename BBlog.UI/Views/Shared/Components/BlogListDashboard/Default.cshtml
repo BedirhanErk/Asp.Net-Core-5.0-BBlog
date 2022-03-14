@@ -22,7 +22,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="@item.ThumbnailImage" class="mr-2" alt="image"> @item.Title
+                                        <img src="@item.ThumbnailImage" class="mr-2" alt="image"> <a href="/Blog/BlogDetails/@item.BlogId">@item.Title</a>
                                     </td>
                                     <td>
                                         @if (item.Category.Name == "Film")

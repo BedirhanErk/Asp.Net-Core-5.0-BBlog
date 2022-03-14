@@ -41,7 +41,7 @@
                                 <a style="cursor:pointer" onclick="deleteBlog(@item.BlogId)"><i style="color:red" class="mdi mdi-delete"></i></a>
                             }
                         </td>
-                        <td>@item.Title</td>
+                        <td><a href="/Blog/BlogDetails/@item.BlogId">@item.Title</a></td>
                         <td>@item.Category.Name</td>
                         <td>
                             @if (item.Status == true)
@@ -61,9 +61,6 @@
         </table>
     </div>
 </div>
-
-
-
 
 <script>
     function deleteBlog(val) {
