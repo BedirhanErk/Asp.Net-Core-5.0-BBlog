@@ -39,6 +39,7 @@ namespace BBlog.UI.Controllers
                 user.Email = request.Email;
                 user.PhoneNumber = request.PhoneNumber;
                 user.Image = request.Image;
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, request.Password);
                 var result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {

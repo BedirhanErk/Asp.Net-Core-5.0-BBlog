@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace BBlog.UI
 {
@@ -50,6 +51,15 @@ namespace BBlog.UI
                     x.LoginPath = "/Login/Index";
                 }
             );
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+
+                options.LoginPath = "/Login/Index/";
+                options.SlidingExpiration = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

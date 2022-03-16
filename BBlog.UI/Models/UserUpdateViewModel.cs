@@ -16,5 +16,10 @@ namespace BBlog.UI.Models
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Image is required.")]
         public string Image { get; set; }
+        [Required(ErrorMessage = "Password is required.")]
+        public string Password { get; set; }
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Passwords do not match.")]
+        public string ConfirmPassword { get; set; }
     }
 }
