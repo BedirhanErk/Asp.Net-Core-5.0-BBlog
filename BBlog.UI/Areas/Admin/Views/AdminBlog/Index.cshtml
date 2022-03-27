@@ -1,0 +1,100 @@
+﻿@using EntityLayer.Concrete
+@model List<Blog>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3>
+                        <i class="fa fa-list"></i> Blogs
+                        <a href="/Admin/AdminBlog/AddBlog" style="position:absolute;right:40px"><i class="fa fa-plus"></i></a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="ibox">
+                    <div class="ibox-content product-box">
+                        <div class="product-imitation">
+                            <img src="@item.ThumbnailImage" width="245" height="161" />
+                        </div>
+                        <div class="product-desc">
+                            @if (item.Status == false)
+                            {
+                                <span class="product-price" style="background-color:red">
+                                    Passive
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="product-price">
+                                    Active
+                                </span>
+                            }
+                            <small class="text-muted">@item.Category.Name</small>
+                            <a href="#" class="product-name"> @item.Title</a>
+                            <div class="small m-t-xs">
+                                @item.CreDate.ToString("dd/MMM/yyyy")
+                            </div>
+                            @if (item.Status == false)
+                            {
+                                <div class="m-t text-righ">
+                                    <a onclick="deleteBlog(@item.BlogId)" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-refresh"></i></a>
+                                    <a herf="/Admin/AdminBlog/UpdateBlog/@item.BlogId" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-edit"></i></a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="m-t text-righ">
+                                    <a onclick="deleteBlog(@item.BlogId)" style="color:red" class="btn btn-xs btn-outline btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a herf="/Admin/AdminBlog/UpdateBlog/@item.BlogId" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-edit fa-sm"></i></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    function deleteBlog(val) {
+        var data = new Object();
+
+        data.id = val;
+
+        Swal.fire({
+            title: 'Are you sure?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Admin/AdminBlog/DeleteBlog',
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            window.location.reload()
+                        }
+                    }
+                });
+            }
+        })
+    }
+</script>
