@@ -1,0 +1,33 @@
+﻿@model SendMessageModelView
+@{
+    ViewData["Title"] = "Send Message";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            <div class="page-header">
+                <h3 class="page-title">
+                    <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                        <i class="mdi mdi-send"></i>
+                    </span> Send Message
+                    <a href="/Message/InBox/" class="page-title-icon bg-gradient-info text-white mr-2" style="position:absolute;right:33px"><i class="mdi mdi-keyboard-backspace"></i></a>
+                </h3>
+            </div>
+        </div>
+        <form asp-action="SendMessage" asp-controller="Message" method="post">
+            <label>Receiver</label>
+            <input type="email" asp-for="Email" class="form-control"/>
+            <br />
+            <label>Subject</label>
+            <input type="text" asp-for="Subject" class="form-control"/>
+            <br />
+            <label>Message</label>
+            <textarea type="text" asp-for="Detail" class="form-control" rows="8"></textarea>
+            <br />
+            <button type="submit" class="btn btn-gradient-primary">Send</button>
+        </form>
+    </div>
+</div>
+

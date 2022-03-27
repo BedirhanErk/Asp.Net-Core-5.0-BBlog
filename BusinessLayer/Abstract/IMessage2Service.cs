@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
         List<Message2> GetInboxListByWriterLastThreeAndUnread(int id);
         Message2 GetMessageById(int id);
         string GetInboxUnReadMessageCount(int id);
+        List<Message2> GetSendboxListByWriter(int id);
     }
 }

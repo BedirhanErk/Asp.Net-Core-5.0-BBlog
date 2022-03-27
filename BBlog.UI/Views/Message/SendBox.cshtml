@@ -1,6 +1,6 @@
 ﻿@model List<Message2>
 @{
-    ViewData["Title"] = "InBox";
+    ViewData["Title"] = "SendBox";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
@@ -11,7 +11,7 @@
                 <h3 class="page-title">
                     <span class="page-title-icon bg-gradient-primary text-white mr-2">
                         <i class="mdi mdi-message"></i>
-                    </span> Inbox
+                    </span> Sendbox
                     <a href="/Message/SendMessage" class="page-title-icon bg-gradient-primary text-white" style="position:absolute;right:40px"><i class="mdi mdi-send"></i></a>
                 </h3>
             </div>
@@ -19,7 +19,7 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Sender</th>
+                    <th>Receiver</th>
                     <th>Subject</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -30,7 +30,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.SenderUser.Name @item.SenderUser.Surname</td>
+                        <td>@item.ReceiverUser.Name @item.ReceiverUser.Surname</td>
                         <td>@item.Subject</td>
                         <td>@item.Date.ToString("dd/MMM/yy hh:mm")</td>
                         <td>
@@ -50,3 +50,4 @@
         </table>
     </div>
 </div>
+

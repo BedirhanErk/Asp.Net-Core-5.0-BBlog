@@ -1,19 +1,24 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace BBlog.UI.ViewComponents.Writer
 {
     public class WriterMessageNotification : ViewComponent
     {
         Message2Manager mm = new Message2Manager(new EfMessage2Repository());
-        public IViewComponentResult Invoke()
+        private readonly Microsoft.AspNetCore.Identity.UserManager<AppUser> _userManager;
+        public WriterMessageNotification(Microsoft.AspNetCore.Identity.UserManager<AppUser> userManager)
         {
-            int id = Convert.ToInt32(((ClaimsIdentity)User.Identity).FindFirst(ClaimTypes.NameIdentifier).Value);
-            var values = mm.GetInboxListByWriterLastThreeAndUnread(id);
-            ViewBag.MessageCount = mm.GetInboxUnReadMessageCount(id);
+            _userManager = userManager;
+        }
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var values = mm.GetInboxListByWriterLastThreeAndUnread(user.Id);
+            ViewBag.MessageCount = mm.GetInboxUnReadMessageCount(user.Id);
             return View(values);
         }
     }

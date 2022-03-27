@@ -13,7 +13,7 @@ namespace EntityLayer.Concrete
         public string Detail { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
-        public Writer SenderUser { get; set; }
-        public Writer ReceiverUser { get; set; }
+        public AppUser SenderUser { get; set; }
+        public AppUser ReceiverUser { get; set; }
     }
 }
