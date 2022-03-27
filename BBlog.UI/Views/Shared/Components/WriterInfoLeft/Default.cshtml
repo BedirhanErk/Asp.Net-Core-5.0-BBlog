@@ -1,0 +1,11 @@
+﻿@model AppUser
+
+<a href="/Writer/Index/" class="nav-link">
+    <div class="nav-profile-image">
+        <img src="@Model.Image" alt="profile">
+        <span class="login-status online"></span>
+    </div>
+    <div class="nav-profile-text">
+        <span class="font-weight-bold mb-2">@Model.Name @Model.Surname</span>
+    </div>
+</a>

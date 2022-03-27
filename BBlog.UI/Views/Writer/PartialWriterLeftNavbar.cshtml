@@ -1,15 +1,7 @@
 ﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-                <div class="nav-profile-image">
-                    <img src="~/themes/BBlogWriterTheme/assets/images/faces/face1.jpg" alt="profile">
-                    <span class="login-status online"></span>
-                </div>
-                <div class="nav-profile-text">
-                    <span class="font-weight-bold mb-2">@User.Identity.Name</span>
-                </div>
-            </a>
+            @await Component.InvokeAsync("WriterInfoLeft")
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Dashboard/Index/">
