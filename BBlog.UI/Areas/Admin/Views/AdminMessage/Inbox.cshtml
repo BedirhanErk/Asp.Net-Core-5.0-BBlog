@@ -1,0 +1,56 @@
+﻿@using EntityLayer.Concrete
+@model List<Message2>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <a class="btn btn-block btn-primary compose-mail" href="/Admin/AdminMessage/SendMessage">Compose Mail</a>
+                    <div class="space-25"></div>
+                    <h5>Folders</h5>
+                    <ul class="folder-list m-b-md" style="padding: 0">
+                         <li><a href="/Admin/AdminMessage/Inbox"> <i class="fa fa-mail-forward "></i> Inbox <span class="label label-warning float-right">@Model.Count()</span> </a></li>
+                        <li><a href="/Admin/AdminMessage/Sendbox"> <i class="fa fa-mail-reply"></i> Sendbox <span class="label label-primary float-right">@ViewBag.smc</span> </a></li>
+                        <li><a href="/Admin/AdminMessage/SendMessage"> <i class="fa fa-paper-plane"></i> Send Message</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+            <h2>
+                Inbox (@Model.Count())
+            </h2>
+        </div>
+        <div class="mail-box">
+            <table class="table table-hover table-mail">
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="read">
+                            <td class="mail-ontact"><a href="/Admin/AdminMessage/MessageDetail/@item.MessageId">@item.SenderUser.Name @item.SenderUser.Surname</a></td>
+                            <td class="mail-subject"><a href="/Admin/AdminMessage/MessageDetail/@item.MessageId">@item.Subject</a></td>
+                            <td>
+                                @if (item.Status == true)
+                                {
+                                    <i class="fa fa-envelope"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-envelope-open"></i>
+                                }
+                            </td>
+                            <td class="text-right">@item.Date.ToString("dd/MM/yyyy hh:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

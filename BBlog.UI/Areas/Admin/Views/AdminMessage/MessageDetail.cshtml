@@ -1,0 +1,47 @@
+﻿@using EntityLayer.Concrete
+@model Message2
+
+@{
+    ViewData["Title"] = "Message Detail";
+    Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="ibox ">
+            <div class="ibox-content mailbox-content">
+                <div class="file-manager">
+                    <a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">Compose Mail</a>
+                    <div class="space-25"></div>
+                    <h5>Folders</h5>
+                    <ul class="folder-list m-b-md" style="padding: 0">
+                        <li><a href="/Admin/AdminMessage/Inbox"> <i class="fa fa-mail-forward "></i> Inbox <span class="label label-warning float-right">@ViewBag.imc</span> </a></li>
+                        <li><a href="/Admin/AdminMessage/Sendbox"> <i class="fa fa-mail-reply"></i> Sendbox <span class="label label-primary float-right">@ViewBag.smc</span> </a></li>
+                        <li><a href="/Admin/AdminMessage/SendMessage"> <i class="fa fa-paper-plane"></i> Send Message</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 animated fadeInRight">
+        <div class="mail-box-header">
+            <h2>
+                Message Detail
+            </h2>
+            <div class="mail-tools tooltip-demo m-t-md">
+                <h3>
+                    <span class="font-normal">Subject: </span>@Model.Subject
+                </h3>
+                <h5>
+                    <span class="float-right font-normal">@Model.Date.ToString("dd/MM/yyyy hh:mm")</span>
+                    <span class="font-normal">From: </span>@Model.SenderUser.Name @Model.SenderUser.Surname
+                </h5>
+            </div>
+        </div>
+        <div class="mail-box">
+            <div class="mail-body">
+                @Model.Detail
+            </div>
+        </div>
+    </div>
+</div>
