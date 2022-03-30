@@ -1,26 +1,28 @@
-﻿@model RoleViewModel
+﻿@model RoleUpdateViewModel
 @{
-    ViewData["Title"] = "AddRole";
+    ViewData["Title"] = "UpdateRole";
     Layout = "~/Areas/Admin/Views/_AdminLayout.cshtml";
 }
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox">
                 <div class="ibox-title">
                     <h3>
-                        <i class="fa fa-plus"></i> Add Role
+                        <i class="fa fa-edit"></i> Edit Role
                         <a href="/Admin/Role/Index" style="position:absolute;right:40px"><i class="fa fa-arrow-left"></i></a>
                     </h3>
                 </div>
                 <div class="ibox-content">
-                    @using (Html.BeginForm("AddRole", "Role", FormMethod.Post))
+                    @using (Html.BeginForm("UpdateRole", "Role", FormMethod.Post))
                     {
+                        @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
                         <label><b>Role Name</b><b style="color:red">*</b></label>
                         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                         <br />
-                        <button type="submit" class="btn btn-success">Add</button>
+                        <button type="submit" class="btn btn-success">Update</button>
                     }
                 </div>
             </div>
