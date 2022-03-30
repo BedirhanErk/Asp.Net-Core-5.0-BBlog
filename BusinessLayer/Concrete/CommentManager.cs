@@ -29,5 +29,15 @@ namespace BusinessLayer.Concrete
         {
             return _commentDal.GetAll().Count();
         }
+
+        public List<Comment> GetCommentListWithBlog()
+        {
+            return _commentDal.GetCommentListWithBlog();
+        }
+
+        public List<Comment> GetList()
+        {
+            return _commentDal.GetAll();
+        }
     }
 }

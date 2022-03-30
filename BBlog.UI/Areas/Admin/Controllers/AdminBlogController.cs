@@ -24,13 +24,5 @@ namespace BBlog.UI.Areas.Admin.Controllers
             bm.Update(blog);
             return Json(blog);
         }
-        public IActionResult UpdateBlog()
-        {
-            return View();
-        }
-        public IActionResult AddBlog()
-        {
-            return View();
-        }
     }
 }

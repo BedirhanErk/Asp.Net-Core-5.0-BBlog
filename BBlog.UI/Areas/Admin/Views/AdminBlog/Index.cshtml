@@ -12,8 +12,7 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <h3>
-                        <i class="fa fa-list"></i> Blogs
-                        <a href="/Admin/AdminBlog/AddBlog" style="position:absolute;right:40px"><i class="fa fa-plus"></i></a>
+                        <i class="fa fa-database"></i> Blogs
                     </h3>
                 </div>
             </div>
@@ -28,7 +27,7 @@
                 <div class="ibox">
                     <div class="ibox-content product-box">
                         <div class="product-imitation">
-                            <img src="@item.ThumbnailImage" width="245" height="161" />
+                            <img src="@item.ThumbnailImage" height="200"/>
                         </div>
                         <div class="product-desc">
                             @if (item.Status == false)
@@ -44,7 +43,7 @@
                                 </span>
                             }
                             <small class="text-muted">@item.Category.Name</small>
-                            <a href="#" class="product-name"> @item.Title</a>
+                            <a href="/Blog/BlogDetails/@item.BlogId" class="product-name"> @item.Title</a>
                             <div class="small m-t-xs">
                                 @item.CreDate.ToString("dd/MMM/yyyy")
                             </div>
@@ -52,14 +51,13 @@
                             {
                                 <div class="m-t text-righ">
                                     <a onclick="deleteBlog(@item.BlogId)" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-refresh"></i></a>
-                                    <a herf="/Admin/AdminBlog/UpdateBlog/@item.BlogId" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-edit"></i></a>
+                                    <a herf="/Admin/AdminBlog/UpdateBlog/@item.BlogId" class="btn btn-xs btn-outline btn-secondary"><i class="fa fa-pencil"></i></a>
                                 </div>
                             }
                             else
                             {
                                 <div class="m-t text-righ">
-                                    <a onclick="deleteBlog(@item.BlogId)" style="color:red" class="btn btn-xs btn-outline btn-danger"><i class="fa fa-trash"></i></a>
-                                    <a herf="/Admin/AdminBlog/UpdateBlog/@item.BlogId" class="btn btn-xs btn-outline btn-primary"><i class="fa fa-edit fa-sm"></i></a>
+                                    <a onclick="deleteBlog(@item.BlogId)" style="color:red" class="btn btn-xs btn-outline btn-danger"><i class="fa fa-trash"></i></a>    
                                 </div>
                             }
                         </div>

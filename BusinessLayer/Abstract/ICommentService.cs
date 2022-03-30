@@ -8,5 +8,7 @@ namespace BusinessLayer.Abstract
         void Add(Comment comment);
         List<Comment> GetAll(int id);
         long GetCommentCount();
+        List<Comment> GetList();
+        List<Comment> GetCommentListWithBlog();
     }
 }
