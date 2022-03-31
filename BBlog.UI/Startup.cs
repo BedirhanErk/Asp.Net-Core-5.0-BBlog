@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,8 +56,8 @@ namespace BBlog.UI
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromHours(1);
-
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+                options.AccessDeniedPath = new PathString("/Error/Page403");
                 options.LoginPath = "/Login/Index/";
                 options.SlidingExpiration = true;
             });

@@ -8,5 +8,9 @@ namespace BBlog.UI.Controllers
         {
             return View();
         }
+        public IActionResult Page403()
+        {
+            return View();
+        }
     }
 }
