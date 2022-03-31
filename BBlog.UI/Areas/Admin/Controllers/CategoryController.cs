@@ -4,6 +4,7 @@ using ClosedXML.Excel;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using X.PagedList;
@@ -11,6 +12,7 @@ using X.PagedList;
 namespace BBlog.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());

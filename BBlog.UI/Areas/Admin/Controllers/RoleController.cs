@@ -1,5 +1,6 @@
 ﻿using BBlog.UI.Areas.Admin.Models;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace BBlog.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
@@ -121,6 +123,25 @@ namespace BBlog.UI.Areas.Admin.Controllers
             }
 
             return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> request)
+        {
+            var userId = (int)TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userId);
+
+            foreach (var item in request)
+            {
+                if (item.Exists)
+                {
+                    await _userManager.AddToRoleAsync(user, item.Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.Name);
+                }
+            }
+            return RedirectToAction("UserRoleList");
         }
     }
 }
