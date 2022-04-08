@@ -8,7 +8,8 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-HCPLIHJ;database=BBlogDb;integrated security=true;");
+            //optionsBuilder.UseSqlServer("server=DESKTOP-HCPLIHJ;database=BBlogDb;integrated security=true;");
+            optionsBuilder.UseSqlServer("Data Source=SQL8001.site4now.net;Initial Catalog=db_a854e9_bblogdb;User Id=db_a854e9_bblogdb_admin;Password=Bedirhan.66");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
