@@ -1,2 +1,4 @@
 # BBlog
-BBlog
+## Asp.Net Core Kampı (Murat Yücedağ)
+
+Proje **Asp.Net Core 5.0** ile geliştirilmiş ve **N-Tier Architecture** mimarisi ile kullanılmıştır. Projde kullanılan teknolojiler kısaca şu şekildedir **HTML5, CSS3, JavaScript, Bootstrap, Entity Framework**. Üyelik işlemleri için **Identity Core** kullanılmıştır. Projede kullanılan eklentiler **DataTables, Google Chart, Sweet Alert 2, Fluent Validation** şeklindedir. Proje **Entity Framework Code First** yaklaşımı ile geliştirilmiştir. Veritabanı olarak **MsSql** kullanılmıştır. Projede **SOLID** presnsiplerine olabildiğince uyulmuştur. Proje Murat Yücedağ'ın kursları ile birlikte yapılmıştır. Kurs sonunda proje canlıya alınmıştır [http://bedirhanerkkk-001-site1.itempurl.com/] bu adresten projeye ulaşabilirsiniz. Proje geliştirilirken alınan notlar aşağıya ek olarak bırakılmıştır. Proje kurulumu ve detaylı bilgi aşağıda verilmiştir.
